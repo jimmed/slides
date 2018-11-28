@@ -6,6 +6,6 @@
     "deck": "mdx-deck"
   },
   "dependencies": {
-    "mdx-deck": "latest"
+    "mdx-deck": "^1.8.1"
   }
 }
