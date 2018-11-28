@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "**/*.md",
-      "use": "@now/markdown"
+      "use": "@now/md"
     },
     {
       "src": "**/*.mdx",
