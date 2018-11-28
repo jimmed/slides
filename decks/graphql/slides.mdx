@@ -1,0 +1,537 @@
+import { Appear } from 'mdx-deck'
+import { FullScreenCode } from 'mdx-deck/layouts'
+
+# GraphQL
+
+> The what, the why and the how
+
+Twitter: [@jimcodes][jim-twitter] / GitHub: [@jimmed][jim-github]
+
+---
+
+## What GraphQL *is not*
+
+<Appear>
+    <p>A framework</p>
+    <p>An alternative for SQL</p>
+    <p>A silver bullet</p>
+    <p>Mature</p>
+</Appear>
+
+---
+
+## What GraphQL *is*
+
+<Appear>
+    <p>A query language</p>
+    <p>An alternative to REST</p>
+    <p>A great solution to irksome problems</p>
+    <p>Mature-*ish*</p>
+</Appear>
+
+---
+
+## The Problems
+
+---
+
+### 1. Underfetching
+
+---
+
+```
+GET /movies/?q=Hackers
+```
+
+```json
+{
+    "movies": [
+        { "id": "1337", title: "Hackers", year: "1995" }
+    ]
+}
+```
+
+---
+
+```
+GET /movies/1337/reviews
+```
+
+```json
+{
+    "reviews": [
+        { "id": "1010", "rating": 5, "text": "Hands down my favourite film", "author": "Barry" },
+        { "id": "1011", "rating": 3.5, "text": "I didn't get most of the jokes but Angelina Jolie *almost* acts", "author": "Dave" },
+        { "id": "1012", "rating": 1, "text": "I've never seen such heavy-handed product placement", "author": "Geoff" },
+    ]
+}
+```
+
+---
+
+```
+GET /movies/1337/characters
+```
+
+```
+GET /movies/1337/images
+```
+
+---
+
+### 2. Underfetching
+
+<Appear>
+    <p>Not enough data in each response</p>
+    <p>Need to send (many) more requests</p>
+    <p>Impacts user experience</p>
+    <p>Impacts developer experience</p>
+</Appear>
+
+---
+
+### Overfetching
+
+---
+
+```
+GET /flights/?from=JFK&to=LHR
+```
+
+... some time later ...
+
+```
+{
+    "flights": {
+        flightId: 271046927,
+        carrier: {
+            fs: "AA",
+            iata: "AA",
+            icao: "AAL",
+            name: "American Airlines",
+            phoneNumber: "1-800-433-7300",
+            active: true
+        },
+        flightNumber: "100",
+        departureAirport: {
+        fs: "JFK",
+        iata: "JFK",
+        icao: "KJFK",
+        faa: "JFK",
+        name: "John F. Kennedy International Airport",
+        street1: "JFK Airport",
+    }
+}
+
+---
+
+### Overfetching
+
+<Appear>
+    <p>More data than is useful</p>
+    <p>Hard to explore</p>
+    <p>Impacts user experience</p>
+    <p>Impacts developer experience</p>
+</Appear>
+
+---
+
+### 3. Versioning
+
+---
+
+```
+GET /v1/movies/1337/reviews
+```
+
+```
+GET /v2/movie/1337/review
+```
+
+---
+
+```
+GET /movies/1337/reviews
+
+X-API-Version: 2;
+```
+
+---
+
+### Versioning
+
+<Appear>
+    <p>Hard to manage</p>
+    <p>Impacts developer experience</p>
+    <p>Generally a ballache</p>
+</Appear>
+
+---
+
+### 4. Introspection
+
+---
+
+![The pyramid of REST](http://constructorlabs-syllabus.herokuapp.com/static/Screenshot-2014-06-02-14.03.29-640x362-e65ac0211c28daff87594ebdcfc1b3c5-fb8a0.png)
+
+---
+
+> Self-describing API
+
+---
+
+### Introspection
+
+<Appear>
+    <p>Need prior knowledge of API</p>
+    <p><em>or</em>, hard-to-consume hypermedia links</p>
+</Appear>
+
+---
+
+### 5. Modern Applications
+
+<Appear>
+    <p>Each page requires data from many sources</p>
+    <p>Building an endpoint for your page is not RESTful</p>
+    <p>Modern applications are not RESTful</p>
+</Appear>
+
+---
+
+## The Solution: GraphQL
+
+---
+
+### GraphQL
+
+<Appear>
+    <p>Lets you specify exactly what data you need</p>
+    <p>Allows graceful deprecations</p>
+    <p>Incredible developer experience</p>
+</Appear>
+
+---
+
+```
+POST /graphql
+
+...query goes here...
+```
+
+```
+GET /graphql?query=...query goes here...
+```
+---
+
+### Basic Queries
+
+```graphql
+query getMyFavouriteMovies {
+    favouriteMovies {
+        id
+        title
+        year
+        isFavourite
+    }
+}
+```
+
+---
+export default Split
+
+```graphql
+query getMyFavouriteMovies {
+    favouriteMovies {
+        id
+        title
+        year
+        isFavourite
+    }
+}
+```
+
+```json
+{
+    "favouriteMovies": [
+        {
+            "id": "1337",
+            "title": "Hackers",
+            "year": "1995",
+            "isFavourite": true 
+        }
+    ]
+}
+```
+
+---
+export default FullScreenCode
+
+```graphql
+query getAllMovies {
+    movies {
+        id
+        title
+        description
+        poster
+        reviews {
+            id
+            text
+            author {
+                name
+                avatar
+            }
+        }
+    }
+}
+```
+
+---
+
+### Parameterised Queries
+
+```graphql
+query findMovies(query: String!) {
+    searchMovies(query: $query) {
+        id
+        title
+        year
+        isFavourite
+    }
+}
+```
+
+```json
+{ "query": "Hackers" }
+```
+
+---
+
+### Mutations
+
+```graphql
+mutation addMovieToFavourites(id: ID!) {
+    addMovieToFavourites(id: $id)
+}
+```
+
+```json
+{ "id": "1337" }
+```
+
+---
+
+### Mutations
+
+```graphql
+mutation reviewMovie(id: ID!, text: String!) {
+    addReviewToMovie(movieId: $id, text: $text) {
+        id
+        text
+    }
+}
+```
+
+```json
+{ "id": "1337", "text": "HACK THE PLANEEEET!" }
+```
+
+---
+
+### Subscriptions
+
+---
+
+## Real-world Usage
+
+---
+
+### Enter: Apollo Server
+
+---
+
+## Disclaimer
+
+> Other GraphQL implementations exist
+
+---
+
+## Remember Express.js?
+
+---
+export default FullScreenCode
+
+```js
+const express = require('express')
+const db = require('database');
+
+const app = express();
+
+app.get('/menu', (req, res) => {
+    res.json(db.getAllMenuItems());
+});
+
+app.get('/menu/:id', (req, res) => {
+    res.json(db.getMenuItem(req.params.id));
+});
+
+app.get('/menu/:id/reviews', (req, res) => {
+    res.json(db.getMenuItemReviews(req.params.id));
+});
+
+app.listen(8080)
+```
+
+---
+
+## Launching Apollo Server
+
+---
+export default FullScreenCode
+
+```js
+const { ApolloServer, gql } = require('apollo-server');
+const { typeDefs, resolvers } = require('./schema');
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen(8080)
+```
+
+---
+
+```js
+const { typeDefs, resolvers } = require('./schema')
+```
+
+---
+
+## Type Definition
+
+> Describes the types of data our API works with
+
+---
+
+## Type Definitions
+
+```graphql
+type Movie {
+    id: ID!
+    title: String!
+    year: String!
+    isFavourite: Bool
+}
+
+type Query {
+    allMovies: [Movie]
+    movie(id: ID!): Movie
+}
+```
+
+---
+
+## Type Definitions
+
+```graphql
+type Movie {
+    id: ID!
+    title: String!
+    year: String!
+    isFavourite: Bool
+    reviews: [Review]
+}
+
+type Review {
+    id: ID!
+    movie: Movie!
+    author: User!
+    text: String!
+}
+
+type Query {
+    allMovies: [Movie]
+    movie(id: ID!): Movie
+}
+```
+
+---
+
+## Resolvers
+
+> Describe how to get data of each type
+
+---
+
+```js
+const resolvers = {
+    Query: {
+        allMovies: () => db.getAllMovies(),
+        movie: (root, args) => db.getMovieById(args.id)
+    },
+
+    Movie: {
+        reviews: (movie) => db.getReviewsForMovie(movie.id)
+    },
+
+    Review: {
+        movie: (review) => db.getMovieById(review.movieId),
+        author: (review) => db.getUserById(review.authorId)
+    }
+}
+
+---
+
+## Resolvers
+
+```js
+function resolver (
+    parent,
+    args,
+    context
+) {
+    return something;
+}
+```
+
+---
+export default FullScreenCode
+
+```js
+const { ApolloServer, gql } = require('apollo-server');
+
+const typeDefs = gql`
+    type Movie {
+        id: ID!
+        title: String!
+        year: String!
+    }
+
+    type Query {
+        allMovies: [Movie]
+    }
+`;
+
+const resolvers = {
+    Query: {
+        allMovies: () => db.getAllMovies(),
+    },
+};
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+server.listen(8080)
+```
+
+---
+
+# Caveats
+
+<Appear>
+    <p>Limited type system</p>
+    <p>Queries <em>can</em> get expensive</p>
+    <p>Pagination, filtering, sorting</p>
+</Appear>
+
+---
+
+# Questions?

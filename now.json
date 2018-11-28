@@ -1,6 +1,13 @@
 {
   "version": 2,
   "builds": [
-    { "src": "**/*.mdx", "use": "@now/mdx-deck" }
+    {
+      "src": "**/*.md",
+      "use": "@now/markdown"
+    },
+    {
+      "src": "**/*.mdx",
+      "use": "@now/mdx-deck"
+    }
   ]
 }
