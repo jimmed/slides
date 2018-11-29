@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "alias": ["jji.immo"],
   "builds": [
     {
       "src": "**/*.md",
@@ -9,5 +10,7 @@
       "src": "**/*.mdx",
       "use": "@now/mdx-deck"
     }
-  ]
+  ],
+  "regions": ["bru"],
+  "routes": [{ "src": "/", "dest": "README.html" }]
 }
