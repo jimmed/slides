@@ -3,8 +3,13 @@
   "alias": ["jji.immo"],
   "builds": [
     {
-      "src": "**/*.md",
-      "use": "@now/md"
+      "src": "README.md",
+      "use": "@now/md",
+      "config": {
+        "title": "Jim's Slides",
+        "language": "en",
+        "css": "theme/markdown.css"
+      }
     },
     {
       "src": "**/*.mdx",
@@ -12,5 +17,5 @@
     }
   ],
   "regions": ["bru"],
-  "routes": [{ "src": "/", "dest": "README.html" }]
+  "routes": [{ "src": "/", "dest": "README.md" }]
 }
