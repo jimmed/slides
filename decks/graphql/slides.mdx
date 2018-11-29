@@ -1,32 +1,33 @@
-import { Appear } from 'mdx-deck'
-import { FullScreenCode, Split } from 'mdx-deck/layouts'
+import { Appear } from "mdx-deck";
+import { FullScreenCode, Split } from "mdx-deck/layouts";
+export { default as theme } from "../../theme";
 
 # GraphQL
 
 > The what, the why and the how
 
-Twitter: [@jimcodes][jim-twitter] / GitHub: [@jimmed][jim-github]
-
 ---
 
-## What GraphQL *is not*
+## What GraphQL _is not_
 
 <Appear>
-    <p>A framework</p>
-    <p>An alternative for SQL</p>
-    <p>A silver bullet</p>
-    <p>Mature</p>
+  <p>A framework</p>
+  <p>An alternative for SQL</p>
+  <p>A silver bullet</p>
+  <p>Mature</p>
 </Appear>
 
 ---
 
-## What GraphQL *is*
+## What GraphQL _is_
 
 <Appear>
-    <p>A query language</p>
-    <p>An alternative to REST</p>
-    <p>A great solution to irksome problems</p>
-    <p>Mature-*ish*</p>
+  <p>A query language</p>
+  <p>An alternative to REST</p>
+  <p>A great solution to irksome problems</p>
+  <p>
+    Mature-<em>ish</em>
+  </p>
 </Appear>
 
 ---
@@ -39,99 +40,338 @@ Twitter: [@jimcodes][jim-twitter] / GitHub: [@jimmed][jim-github]
 
 ---
 
-```
-GET /movies/?q=Hackers
+```http
+GET /movies/?q=Hackers HTTP/1.1
 ```
 
 ```json
 {
-    "movies": [
-        { "id": "1337", title: "Hackers", year: "1995" }
-    ]
+  "movies": [{ "id": "1337", "title": "Hackers", "year": "1995" }]
 }
 ```
 
 ---
 
-```
-GET /movies/1337/reviews
+```http
+GET /movies/1337/reviews HTTP/1.1
 ```
 
 ```json
 {
-    "reviews": [
-        { "id": "1010", "rating": 5, "text": "Hands down my favourite film", "author": "Barry" },
-        { "id": "1011", "rating": 3.5, "text": "I didn't get most of the jokes but Angelina Jolie *almost* acts", "author": "Dave" },
-        { "id": "1012", "rating": 1, "text": "I've never seen such heavy-handed product placement", "author": "Geoff" },
-    ]
+  "reviews": [
+    {
+      "id": "1010",
+      "rating": 5,
+      "text": "Hands down my favourite film",
+      "author": "Barry"
+    },
+    {
+      "id": "1011",
+      "rating": 3.5,
+      "text": "I didn't get most of the jokes but Angelina Jolie *almost* acts",
+      "author": "Dave"
+    },
+    {
+      "id": "1012",
+      "rating": 1,
+      "text": "I've never seen such heavy-handed product placement",
+      "author": "Geoff"
+    }
+  ]
 }
 ```
 
 ---
 
-```
-GET /movies/1337/characters
+```http
+GET /movies/1337/characters HTTP/1.1
 ```
 
-```
-GET /movies/1337/images
+```http
+GET /movies/1337/images HTTP/1.1
 ```
 
 ---
 
-### 2. Underfetching
+### Underfetching
 
 <Appear>
-    <p>Not enough data in each response</p>
-    <p>Need to send (many) more requests</p>
-    <p>Impacts user experience</p>
-    <p>Impacts developer experience</p>
+  <p>Not enough data in each response</p>
+  <p>Need to send (many) more requests</p>
+  <p>Impacts user experience</p>
+  <p>Impacts developer experience</p>
 </Appear>
 
 ---
 
-### Overfetching
+### 2. Overfetching
 
 ---
 
+```http
+GET /flights/?from=JFK&to=LHR HTTP/1.1
 ```
-GET /flights/?from=JFK&to=LHR
-```
+
+---
 
 ... some time later ...
 
-```
+---
+
+export default FullScreenCode;
+
+```json
 {
-    "flights": {
-        flightId: 271046927,
-        carrier: {
-            fs: "AA",
-            iata: "AA",
-            icao: "AAL",
-            name: "American Airlines",
-            phoneNumber: "1-800-433-7300",
-            active: true
+  "flights": [
+    {
+      "flightId": 271046927,
+      "carrier": {
+        "fs": "AA",
+        "iata": "AA",
+        "icao": "AAL",
+        "name": "American Airlines",
+        "phoneNumber": "1-800-433-7300",
+        "active": true
+      },
+      "flightNumber": "100",
+      "departureAirport": {
+        "fs": "JFK",
+        "iata": "JFK",
+        "icao": "KJFK",
+        "faa": "JFK",
+        "name": "John F. Kennedy International Airport",
+        "street1": "JFK Airport",
+        "street2": "",
+        "city": "New York",
+        "cityCode": "NYC",
+        "stateCode": "NY",
+        "postalCode": "11430",
+        "countryCode": "US",
+        "countryName": "United States",
+        "regionName": "North America",
+        "timeZoneRegionName": "America/New_York",
+        "weatherZone": "NYZ076",
+        "localTime": "2012-08-09T14:47:31.438",
+        "utcOffsetHours": -4,
+        "latitude": 40.642335,
+        "longitude": -73.78817,
+        "elevationFeet": 13,
+        "classification": 1,
+        "active": true,
+        "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/JFK?codeType=fs",
+        "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/JFK?codeType=fs"
+      },
+      "arrivalAirport": {
+        "fs": "LHR",
+        "iata": "LHR",
+        "icao": "EGLL",
+        "name": "Heathrow Airport",
+        "city": "London",
+        "cityCode": "LON",
+        "stateCode": "EN",
+        "countryCode": "GB",
+        "countryName": "United Kingdom",
+        "regionName": "Europe",
+        "timeZoneRegionName": "Europe/London",
+        "localTime": "2012-08-09T19:47:31.439",
+        "utcOffsetHours": 1,
+        "latitude": 51.469603,
+        "longitude": -0.453566,
+        "elevationFeet": 80,
+        "classification": 1,
+        "active": true,
+        "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/LHR?codeType=fs",
+        "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/LHR?codeType=fs"
+      },
+      "departureDate": {
+        "dateLocal": "2012-08-07T18:10:00.000",
+        "dateUtc": "2012-08-07T22:10:00.000Z"
+      },
+      "arrivalDate": {
+        "dateLocal": "2012-08-08T06:20:00.000",
+        "dateUtc": "2012-08-08T05:20:00.000Z"
+      },
+      "status": "L",
+      "schedule": {
+        "flightType": "J",
+        "serviceClasses": "RFJY",
+        "restrictions": ""
+      },
+      "operationalTimes": {
+        "publishedDeparture": {
+          "dateLocal": "2012-08-07T18:10:00.000",
+          "dateUtc": "2012-08-07T22:10:00.000Z"
         },
-        flightNumber: "100",
-        departureAirport: {
-        fs: "JFK",
-        iata: "JFK",
-        icao: "KJFK",
-        faa: "JFK",
-        name: "John F. Kennedy International Airport",
-        street1: "JFK Airport",
+        "publishedArrival": {
+          "dateLocal": "2012-08-08T06:20:00.000",
+          "dateUtc": "2012-08-08T05:20:00.000Z"
+        },
+        "scheduledGateDeparture": {
+          "dateLocal": "2012-08-07T18:10:00.000",
+          "dateUtc": "2012-08-07T22:10:00.000Z"
+        },
+        "actualGateDeparture": {
+          "dateLocal": "2012-08-07T18:05:00.000",
+          "dateUtc": "2012-08-07T22:05:00.000Z"
+        },
+        "flightPlanPlannedDeparture": {
+          "dateLocal": "2012-08-07T18:54:00.000",
+          "dateUtc": "2012-08-07T22:54:00.000Z"
+        },
+        "estimatedRunwayDeparture": {
+          "dateLocal": "2012-08-07T18:49:00.000",
+          "dateUtc": "2012-08-07T22:49:00.000Z"
+        },
+        "actualRunwayDeparture": {
+          "dateLocal": "2012-08-07T18:23:00.000",
+          "dateUtc": "2012-08-07T22:23:00.000Z"
+        },
+        "scheduledGateArrival": {
+          "dateLocal": "2012-08-08T06:20:00.000",
+          "dateUtc": "2012-08-08T05:20:00.000Z"
+        },
+        "estimatedGateArrival": {
+          "dateLocal": "2012-08-08T06:07:00.000",
+          "dateUtc": "2012-08-08T05:07:00.000Z"
+        },
+        "actualGateArrival": {
+          "dateLocal": "2012-08-08T06:09:00.000",
+          "dateUtc": "2012-08-08T05:09:00.000Z"
+        },
+        "flightPlanPlannedArrival": {
+          "dateLocal": "2012-08-08T06:14:00.000",
+          "dateUtc": "2012-08-08T05:14:00.000Z"
+        },
+        "estimatedRunwayArrival": {
+          "dateLocal": "2012-08-08T06:07:00.000",
+          "dateUtc": "2012-08-08T05:07:00.000Z"
+        },
+        "actualRunwayArrival": {
+          "dateLocal": "2012-08-08T06:05:00.000",
+          "dateUtc": "2012-08-08T05:05:00.000Z"
+        }
+      },
+      "codeshares": [
+        {
+          "carrier": {
+            "fs": "LY",
+            "iata": "LY",
+            "icao": "ELY",
+            "name": "El Al",
+            "active": true
+          },
+          "flightNumber": "8051",
+          "relationship": "L"
+        },
+        {
+          "carrier": {
+            "fs": "IB",
+            "iata": "IB",
+            "icao": "IBE",
+            "name": "Iberia",
+            "active": true
+          },
+          "flightNumber": "4218",
+          "relationship": "L"
+        },
+        {
+          "carrier": {
+            "fs": "BA",
+            "iata": "BA",
+            "icao": "BAW",
+            "name": "British Airways",
+            "phoneNumber": "1-800-AIRWAYS",
+            "active": true
+          },
+          "flightNumber": "1511",
+          "relationship": "L"
+        },
+        {
+          "carrier": {
+            "fs": "GF",
+            "iata": "GF",
+            "icao": "GFA",
+            "name": "Gulf Air",
+            "active": true
+          },
+          "flightNumber": "6654",
+          "relationship": "L"
+        }
+      ],
+      "flightDurations": {
+        "scheduledBlockMinutes": 430,
+        "blockMinutes": 424,
+        "scheduledAirMinutes": 380,
+        "airMinutes": 402,
+        "scheduledTaxiOutMinutes": 44,
+        "taxiOutMinutes": 18,
+        "scheduledTaxiInMinutes": 6,
+        "taxiInMinutes": 4
+      },
+      "airportResources": {
+        "departureTerminal": "8",
+        "departureGate": "B3",
+        "arrivalTerminal": "3",
+        "arrivalGate": "36"
+      },
+      "flightEquipment": {
+        "scheduledEquipment": {
+          "iata": "777",
+          "name": "Boeing 777 Passenger",
+          "turboProp": false,
+          "jet": true,
+          "widebody": true,
+          "regional": false
+        },
+        "tailNumber": "N753AN"
+      },
+      "irregularOperations": [
+        {
+          "type": "CANCELLATION",
+          "dateUtc": "2013-02-26T23:00:00.000Z",
+          "message": "Cancelled due to mechanical issue."
+        },
+        {
+          "type": "REPLACED_BY",
+          "relatedFlightId": 24586521,
+          "dateUtc": "2013-02-26T23:00:00.000Z",
+          "message": "New flight created to replace a cancelled flight."
+        }
+      ],
+      "confirmedIncident": {
+        "publishedDate": "2013-02-26T23:00:00.000Z",
+        "message": "The plan has slid off the runway."
+      },
+      "operatingCarrier": {
+        "fs": "AA",
+        "iata": "AA",
+        "icao": "AAL",
+        "name": "American Airlines",
+        "phoneNumber": "1-800-433-7300",
+        "active": true
+      },
+      "primaryCarrier": {
+        "fs": "AA",
+        "iata": "AA",
+        "icao": "AAL",
+        "name": "American Airlines",
+        "phoneNumber": "1-800-433-7300",
+        "active": true
+      }
     }
+  ]
 }
+```
 
 ---
 
 ### Overfetching
 
 <Appear>
-    <p>More data than is useful</p>
-    <p>Hard to explore</p>
-    <p>Impacts user experience</p>
-    <p>Impacts developer experience</p>
+  <p>More data than is useful</p>
+  <p>Hard to explore</p>
+  <p>Impacts user experience</p>
+  <p>Impacts developer experience</p>
 </Appear>
 
 ---
@@ -140,18 +380,18 @@ GET /flights/?from=JFK&to=LHR
 
 ---
 
-```
-GET /v1/movies/1337/reviews
+```http
+GET /v1/movies/1337/reviews HTTP/1.1
 ```
 
-```
-GET /v2/movie/1337/review
+```http
+GET /v2/movie/1337/review HTTP/1.1
 ```
 
 ---
 
-```
-GET /movies/1337/reviews
+```http
+GET /movies/1337/reviews HTTP/1.1
 
 X-API-Version: 2;
 ```
@@ -161,9 +401,9 @@ X-API-Version: 2;
 ### Versioning
 
 <Appear>
-    <p>Hard to manage</p>
-    <p>Impacts developer experience</p>
-    <p>Generally a ballache</p>
+  <p>Hard to manage</p>
+  <p>Impacts developer experience</p>
+  <p>Generally a ballache</p>
 </Appear>
 
 ---
@@ -183,8 +423,10 @@ X-API-Version: 2;
 ### Introspection
 
 <Appear>
-    <p>Need prior knowledge of API</p>
-    <p><em>or</em>, hard-to-consume hypermedia links</p>
+  <p>Need prior knowledge of API</p>
+  <p>
+    <em>or</em>, hard-to-consume hypermedia links
+  </p>
 </Appear>
 
 ---
@@ -192,9 +434,9 @@ X-API-Version: 2;
 ### 5. Modern Applications
 
 <Appear>
-    <p>Each page requires data from many sources</p>
-    <p>Building an endpoint for your page is not RESTful</p>
-    <p>Modern applications are not RESTful</p>
+  <p>Each page requires data from many sources</p>
+  <p>Building an endpoint for your page is not RESTful</p>
+  <p>Modern applications are not RESTful</p>
 </Appear>
 
 ---
@@ -206,83 +448,85 @@ X-API-Version: 2;
 ### GraphQL
 
 <Appear>
-    <p>Lets you specify exactly what data you need</p>
-    <p>Allows graceful deprecations</p>
-    <p>Incredible developer experience</p>
+  <p>Lets you query exactly what data you need</p>
+  <p>Allows graceful deprecations</p>
+  <p>Incredible developer experience</p>
 </Appear>
 
----
-
-```
-POST /graphql
-
-...query goes here...
-```
-
-```
-GET /graphql?query=...query goes here...
-```
 ---
 
 ### Basic Queries
 
 ```graphql
 query getMyFavouriteMovies {
-    favouriteMovies {
-        id
-        title
-        year
-        isFavourite
-    }
+  favouriteMovies {
+    id
+    title
+    year
+    isFavourite
+  }
 }
 ```
 
 ---
-export default Split
+
+```http
+POST /graphql HTTP/1.1
+Content-Type: application/graphql
+
+query { movies { id, title, year }}
+```
+
+```http
+GET /graphql?query=query+{+movies... HTTP/1.1
+```
+
+---
+
+export default Split;
 
 ```graphql
 query getMyFavouriteMovies {
-    favouriteMovies {
-        id
-        title
-        year
-        isFavourite
-    }
+  favouriteMovies {
+    id
+    title
+    year
+    isFavourite
+  }
 }
 ```
 
 ```json
 {
-    "favouriteMovies": [
-        {
-            "id": "1337",
-            "title": "Hackers",
-            "year": "1995",
-            "isFavourite": true 
-        }
-    ]
+  "favouriteMovies": [
+    {
+      "id": "1337",
+      "title": "Hackers",
+      "year": "1995",
+      "isFavourite": true
+    }
+  ]
 }
 ```
 
 ---
-export default FullScreenCode
 
 ```graphql
 query getAllMovies {
-    movies {
-        id
-        title
-        description
-        poster
-        reviews {
-            id
-            text
-            author {
-                name
-                avatar
-            }
-        }
+  movies {
+    id
+    title
+    description
+    poster
+    reviews {
+      id
+      text
+      author {
+        name
+        avatar
+      }
     }
+  }
 }
 ```
 
@@ -350,7 +594,7 @@ mutation reviewMovie(id: ID!, text: String!) {
 
 ---
 
-## Disclaimer
+# Disclaimer
 
 > Other GraphQL implementations exist
 
@@ -359,27 +603,28 @@ mutation reviewMovie(id: ID!, text: String!) {
 ## Remember Express.js?
 
 ---
-export default FullScreenCode
 
 ```js
-const express = require('express')
-const db = require('database');
-
+const express = require("express");
+const db = require("./database");
 const app = express();
+const PORT = process.env.PORT || 8080;
 
-app.get('/menu', (req, res) => {
-    res.json(db.getAllMenuItems());
+app.get("/menu", (req, res) => {
+  res.json(db.getAllMenuItems());
 });
 
-app.get('/menu/:id', (req, res) => {
-    res.json(db.getMenuItem(req.params.id));
+app.get("/menu/:id", (req, res) => {
+  res.json(db.getMenuItem(req.params.id));
 });
 
-app.get('/menu/:id/reviews', (req, res) => {
-    res.json(db.getMenuItemReviews(req.params.id));
+app.get("/menu/:id/reviews", (req, res) => {
+  res.json(db.getMenuItemReviews(req.params.id));
 });
 
-app.listen(8080)
+app.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${PORT}`);
+});
 ```
 
 ---
@@ -387,21 +632,23 @@ app.listen(8080)
 ## Launching Apollo Server
 
 ---
-export default FullScreenCode
 
 ```js
-const { ApolloServer, gql } = require('apollo-server');
-const { typeDefs, resolvers } = require('./schema');
+const { ApolloServer, gql } = require("apollo-server");
+const { typeDefs, resolvers } = require("./schema");
+const PORT = process.env.PORT || 8080;
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen(8080)
+server.listen(PORT).then(({ url }) => {
+  console.log(`Server listening at ${url}`);
+});
 ```
 
 ---
 
 ```js
-const { typeDefs, resolvers } = require('./schema')
+const { typeDefs, resolvers } = require("./schema");
 ```
 
 ---
@@ -416,15 +663,15 @@ const { typeDefs, resolvers } = require('./schema')
 
 ```graphql
 type Movie {
-    id: ID!
-    title: String!
-    year: String!
-    isFavourite: Bool
+  id: ID!
+  title: String!
+  year: String!
+  isFavourite: Bool
 }
 
 type Query {
-    allMovies: [Movie]
-    movie(id: ID!): Movie
+  allMovies: [Movie]
+  movie(id: ID!): Movie
 }
 ```
 
@@ -434,23 +681,23 @@ type Query {
 
 ```graphql
 type Movie {
-    id: ID!
-    title: String!
-    year: String!
-    isFavourite: Bool
-    reviews: [Review]
+  id: ID!
+  title: String!
+  year: String!
+  isFavourite: Bool
+  reviews: [Review]
 }
 
 type Review {
-    id: ID!
-    movie: Movie!
-    author: User!
-    text: String!
+  id: ID!
+  movie: Movie!
+  author: User!
+  text: String!
 }
 
 type Query {
-    allMovies: [Movie]
-    movie(id: ID!): Movie
+  allMovies: [Movie]
+  movie(id: ID!): Movie
 }
 ```
 
@@ -462,7 +709,22 @@ type Query {
 
 ---
 
-```js
+`````js
+const resolvers = {
+    Query: {
+        allMovies() {
+          return db.getAllMovies()
+        },
+
+        movie(root, args) {
+          return db.getMovieById(args.id)
+        }
+    },
+}
+```
+---
+
+````js
 const resolvers = {
     Query: {
         allMovies: () => db.getAllMovies(),
@@ -478,6 +740,7 @@ const resolvers = {
         author: (review) => db.getUserById(review.authorId)
     }
 }
+```
 
 ---
 
@@ -494,32 +757,45 @@ function resolver (
 ```
 
 ---
-export default FullScreenCode
+
+## Resolvers
 
 ```js
-const { ApolloServer, gql } = require('apollo-server');
+function resolver (
+    whereWeCameFrom,
+    argumentsFromRequest,
+    globalStuffWeSpecify
+) {
+    return theDataWeRequested;
+}
+```
+
+---
+
+```js
+const { ApolloServer, gql } = require("apollo-server");
 
 const typeDefs = gql`
-    type Movie {
-        id: ID!
-        title: String!
-        year: String!
-    }
+  type Movie {
+    id: ID!
+    title: String!
+    year: String!
+  }
 
-    type Query {
-        allMovies: [Movie]
-    }
+  type Query {
+    allMovies: [Movie]
+  }
 `;
 
 const resolvers = {
-    Query: {
-        allMovies: () => db.getAllMovies(),
-    },
+  Query: {
+    allMovies: () => db.getAllMovies()
+  }
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen(8080)
+server.listen(8080);
 ```
 
 ---
@@ -527,11 +803,27 @@ server.listen(8080)
 # Caveats
 
 <Appear>
-    <p>Limited type system</p>
-    <p>Queries <em>can</em> get expensive</p>
-    <p>Pagination, filtering, sorting</p>
+  <p>Limited type system</p>
+  <p>
+    Queries <em>can</em> get expensive
+  </p>
+  <p>Pagination, filtering, sorting</p>
 </Appear>
 
 ---
 
 # Questions?
+
+```js
+const resolvers = {
+  Query: {
+    contact: {
+      email: 'jim@spicy.engineering',
+      twitter: 'jimcodes',
+      github: 'jimmed',
+      phone: '+447̵̜̥̮̬8̬4̭5͈̯̥̻̲̞̼͠3͞1̳6̷̣̙̺08̝̳͕̀6̳'
+    },
+    slack: ['constructorlabs', 'jimoverflow']
+  }
+}
+```
