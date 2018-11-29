@@ -1,0 +1,169 @@
+import { Head, Appear } from "mdx-deck";
+
+export { default as theme } from "../../theme";
+
+<Head>
+  <title>Progressive Web Apps</title>
+</Head>
+
+# PWAs
+
+---
+
+# Progressive Web Apps
+
+---
+
+> Web apps which behave like _native_ applications
+
+---
+
+# "Progressive" Web Apps
+
+<Appear>
+  <p>Offline capable</p>
+  <p>Responsive design</p>
+  <p>URL-addressable</p>
+  <p>Integrate with OS</p>
+</Appear>
+
+---
+
+# Offline First
+
+<Appear>
+  <p>Local storage</p>
+  <p>IndexedDB (localForage)</p>
+  <p>Service Workers</p>
+</Appear>
+
+---
+
+# Responsive Design
+
+<Appear>
+  <p>Adapt to the device</p>
+  <p>Accessibility</p>
+  <p>User experience</p>
+</Appear>
+
+---
+
+# URL-addressable
+
+<Appear>
+  <p>Allow user to directly access content</p>
+  <p>Shortcuts / bookmarks / homescreen</p>
+  <p>
+    <code>https://my.neat.app/widgets/123/floobs</code>
+  </p>
+</Appear>
+
+---
+
+# OS Integration
+
+<Appear>
+  <p>
+    The <em>"native"</em> part
+  </p>
+  <p>Use device hardware</p>
+  <p>Native user experience</p>
+  <p>Non-blocking behavior</p>
+</Appear>
+
+---
+
+# The Catch
+
+---
+
+# Caching is _hard_
+
+```notes
+Two hard problems in computer science
+Caching bugs cause exotic behaviours
+```
+
+---
+
+# Offline support is _hard_
+
+```notes
+Conflict resolution
+Versioning
+Service worker gotchas
+ - changing standards
+ - authentication / XSS
+```
+
+---
+
+# Progressive apps need careful design
+
+```notes
+User experience on all devices
+User flow goes outside of the device
+```
+
+---
+
+# Google PWA Checklist
+
+<Appear>
+  <p>Served over HTTPS</p>
+  <p>Responsive design</p>
+  <p>All app URLs available offline</p>
+  <p>
+    Manifest file for <em>Add to Home screen</em>
+  </p>
+  <p>Fast first load on "average" device</p>
+  <p>Cross-browser support</p>
+  <p>Non-blocking page transitions</p>
+  <p>Each page has a URL</p>
+</Appear>
+
+---
+
+# Google _Exemplary_ PWA Checklist
+
+<Appear>
+  <p>Site content indexed by Google</p>
+  <p>Web ontology metadata (schema.org)</p>
+  <p>Social metadata (OpenGraph)</p>
+  <p>
+    Canonical URL <code>&lt;link /></code> tags
+  </p>
+  <p>
+    Uses browser <code>history</code> API
+  </p>
+  <p>No jumping content</p>
+  <p>Scroll position retained on navigation</p>
+  <p>Keyboard doesn't cover inputs</p>
+  <p>Social share buttons</p>
+  <p>Tasteful use of install banner</p>
+  <p>Cache-first networking</p>
+  <p>Offline prompt</p>
+</Appear>
+
+---
+
+# Other Recommendations
+
+<Appear>
+  <p>Push notifications</p>
+  <p>Use OS' credential management</p>
+  <p>Use OS' payment API</p>
+</Appear>
+
+---
+
+# Disclaimer
+
+> I am not an expert on PWAs
+
+---
+
+# Questions?
+
+@jimcodes
