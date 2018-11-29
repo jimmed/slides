@@ -14,8 +14,12 @@
     {
       "src": "**/*.mdx",
       "use": "@now/mdx-deck"
+    },
+    {
+      "src": "**/*.css",
+      "use": "@now/static"
     }
   ],
   "regions": ["bru"],
-  "routes": [{ "src": "/", "dest": "README.md" }]
+  "routes": [{ "src": "/", "dest": "/README.html" }]
 }
