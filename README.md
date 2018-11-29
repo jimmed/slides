@@ -10,11 +10,11 @@ All slides are written in [MDX][mdx] format, to be rendered using [mdx-deck][mdx
 
 Slides are available for the following talks:
 
-- [GraphQL](./decks/graphql)
-- [Typed JS](./decks/typedjs)
-- [DevOps](./decks/devops)
-- [Node.js](./decks/node)
-- [Progressive Web Apps](./decks/pwas)
+- [GraphQL](./decks/graphql/)
+- [Typed JS](./decks/typedjs/)
+- [DevOps](./decks/devops/)
+- [Node.js](./decks/node/)
+- [Progressive Web Apps](./decks/pwas/)
 
 Note that a lot of these slides make little sense without me talking in front of them, but the source code is left here as a reference for my students, or anybody else who is curious.
 
