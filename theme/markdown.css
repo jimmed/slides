@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Source Code Pro", monospace;
+  font-size: 1.2rem;
+  max-width: 800px;
+  color: rgb(0, 61, 72);
+  background-color: rgb(0, 205, 241);
+  margin: 2rem auto;
+}
+
+@media (max-width: 799px) {
+  body {
+    width: 100%;
+    margin: 2rem 0;
+    padding: rem;
+  }
+}
