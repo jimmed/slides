@@ -1,0 +1,511 @@
+export { book as theme } from "../../theme";
+
+# Hooks in React
+
+---
+
+# What is React?
+
+```notes
+for those non-tech people in the audience
+runs nearly all of our user interfaces
+ - mettle app (react native)
+ - ops-tool
+ - website
+ - this presentation
+```
+
+---
+
+<iframe
+  src="https://codesandbox.io/embed/v4bxe?autoresize=1&fontsize=22&hidenavigation=1&view=editor&hidenavigation=1"
+  style={{
+    width: "100vw",
+    height: "100vh",
+    border: 0,
+    borderRadius: 4,
+    overflow: "hidden",
+  }}
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+/>
+
+---
+
+import { Appear } from "mdx-deck";
+
+## Developers 💜 React
+
+```notes
+Built by Facebook to address their own tech issues
+- Performance in large applications
+- Predictability / reasoning about code
+  - Lifecycle model
+  - Separation of local state from application state
+- Ecosystem
+```
+
+---
+
+import { Image } from "mdx-deck";
+
+<Image size="contain" src="assets/react-download-graph.png" />
+
+---
+
+## Developers 🤬 React
+
+```notes
+- Architecture took a long time to refine
+- Many, many improvements over time
+- Composability of components easier
+- Composability of behaviours still hard
+```
+
+---
+
+## History of React
+
+### July 2013 ─ v0.3
+
+First public release
+
+```notes
+Initial public release v0.3.0
+Major design flaws, bugs, warts
+Mixins!
+```
+
+---
+
+```jsx
+React.createClass({
+  name: "ToggleButton",
+  getInitialState() {
+    return { toggle: false };
+  },
+  handleClick() {
+    this.setState({
+      toggle: !this.state.toggle,
+    });
+  },
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.toggle ? "On" : "Off"}
+      </button>
+    );
+  },
+});
+```
+
+---
+
+## Mixins
+
+```jsx
+const ToggleMixin = {
+  getInitialState() {
+    return { toggle: false };
+  },
+  handleClick() {
+    this.setState({
+      toggle: !this.state.toggle,
+    });
+  },
+};
+```
+
+---
+
+## Mixins
+
+```jsx
+React.createClass({
+  name: "ToggleButton",
+  mixins: [ToggleMixin],
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        {this.state.toggle ? "On" : "Off"}
+      </button>
+    );
+  },
+});
+```
+
+```notes
+Mixins were _the_ way to compose behaviours
+Kinda worked, a few problems
+```
+
+---
+
+## History of React
+
+### December 2013 ─ v0.8
+
+```notes
+Published to npm v0.8.0
+Nice christmas gift
+Reliable enough to build applications with
+```
+
+Published on npm
+
+---
+
+## History of React
+
+### Oct 2015 ─ v0.14
+
+Separated into `react` and `react-dom` packages
+
+```notes
+Important step as it realised React as a tool for reconciling trees of elements
+```
+
+---
+
+## Stateless Functional Components
+
+```jsx
+const MyButton = ({ onClick, toggled }) => (
+  <button onClick={onClick}>{toggled ? "On" : "Off"}</button>
+);
+```
+
+```notes
+Super small syntax
+NO LIFECYCLE
+```
+
+---
+
+## History of React
+
+### Apr 2016 ─ v15
+
+First "stable" release
+
+```notes
+Huge performance improvements
+Improved SVG support
+```
+
+---
+
+<Image size="contain" src="assets/mixins-considered-harmful.png" />
+
+```notes
+Lord and saviour St Abramov of the church of React
+ - mixins are horribly broken
+ - name clashes
+ - pain to manage (dependencies, tight binding + messy at scale)
+
+Solutions:
+ - don't use mixins. embed directly or use HoCs
+```
+
+---
+
+```jsx
+const withToggle = InnerComponent =>
+  class extends React.Component {
+    state = { toggle: false };
+
+    handleToggle() {
+      this.setState({ toggle: !this.state.toggle });
+    }
+
+    render() {
+      return (
+        <InnerComponent
+          {...this.props}
+          toggled={this.state.toggle}
+          onClick={() => this.handleToggle()}
+        />
+      );
+    }
+  };
+```
+
+```notes
+Higher-order components allow composing behaviour
+```
+
+---
+
+## SFCs + HoCs
+
+```jsx
+const MyButton = ({ onClick, toggled }) => (
+  <button onClick={onClick}>{toggled ? "On" : "Off"}</button>
+);
+
+const ToggleButton = withToggle(MyButton);
+```
+
+```notes
+Fixes the clashing + maintainability issues of mixins
+Composability possible
+```
+
+---
+
+```jsx
+const ToggleButtonWithPopover = withPopover(withToggle(MyButton));
+```
+
+---
+
+```jsx
+const IsThisEvenReallyAButton = _.flowRight(
+  withPopover,
+  withToggle,
+  withCounter,
+  withSomethingFromMyReduxStore,
+  withCatPhotosFromApi
+)(MyButton);
+```
+
+```notes
+Very powerful pattern
+Comes with a cost
+Lovely using recompose ─ ops-tool
+```
+
+---
+
+```
+<Popover>
+  <Toggle>
+    <Counter>
+      <CatPhotoApi>
+        <MyButton />
+      </CatPhotoApi>
+    </Counter>
+  </Toggle>
+</Popover>
+```
+
+```notes
+Can affect performance
+Pain to debug
+Naming clashes problem resurfaces in passed props
+```
+
+---
+
+# ~~Render Props~~
+
+```notes
+a.k.a children as a function
+Fixes component nesting problem
+Ugly syntax in render method
+```
+
+---
+
+# Enter: Hooks
+
+```notes
+A new API for the same React component lifecycle
+which can be used inside functional components
+```
+
+---
+
+## ~~Stateless~~ Functional Components
+
+---
+
+<iframe
+  src="https://codesandbox.io/embed/cdu2f?autoresize=1&fontsize=22&hidenavigation=1&view=editor&module=%2Fsrc%2FButton.jsx"
+  style={{
+    width: "100vw",
+    height: "100vh",
+    border: 0,
+    borderRadius: 4,
+    overflow: "hidden",
+  }}
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+/>
+
+```notes
+Explain what is going on here
+ - functional component
+ - weird useState function from react
+ - storing single state variable
+ - no need for setState
+Add a counter
+ - many state variables
+Extract behaviours out into new hooks
+```
+
+---
+
+# `useState`
+
+```jsx
+const useToggle = (initial = false) => {
+  const [toggled, setToggled] = useState(initial);
+  return [toggled, () => setToggled(!toggled)];
+};
+```
+
+```jsx
+const useCounter = (initial = 0) => {
+  const [counter, setCounter] = useState(initial);
+  return [counter, () => setCounter(counter + 1)];
+};
+```
+
+```notes
+can return whatever, but CQRS
+```
+
+---
+
+<iframe
+  src="https://codesandbox.io/embed/5z658?autoresize=1&fontsize=22&hidenavigation=1&view=editor&module=%2Fsrc%2FButton.jsx"
+  style={{
+    width: "100vw",
+    height: "100vh",
+    border: 0,
+    borderRadius: 4,
+    overflow: "hidden",
+  }}
+  sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
+/>
+
+```notes
+- replacement for didmount/didupdate/willunmount
+Make the behaviour optional
+ - wrap the hook in an if statement first (WRONG)
+ - move it inside
+ - add dependency
+```
+
+---
+
+# `useEffect`
+
+```jsx
+const useDocumentTitle = title =>
+  useEffect(() => {
+    let originalTitle = document.title;
+    document.title = title;
+
+    return () => {
+      document.title = originalTitle;
+    };
+  }, [title]);
+```
+
+```notes
+3 things:
+ - setup
+ - teardown
+ - dependencies
+```
+
+---
+
+# `useContext`
+
+```jsx
+const ThemedButton = () => {
+  const theme = useContext(MyThemeContext);
+  return <button style={theme}>Button</button>;
+};
+```
+
+```notes
+different way of accessing the same context
+(not using MyThemeContext.Context)
+```
+
+---
+
+# `useReducer`
+
+```jsx
+const [state, dispatch] = useReducer(reducer, initialArg);
+```
+
+---
+
+<center>
+
+# `useReducer` + `useContext`
+
+<p><em>(+ about 10 lines of code)</em></p>
+
+# `==`
+
+# `redux` + `react-redux`
+
+</center>
+
+```notes
+My searing hot take on this
+Redux is now pretty much redundant
+```
+
+---
+
+# `useRef`
+
+```jsx
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  );
+}
+```
+
+```notes
+Same old refs
+```
+
+---
+
+# Other built-in hooks
+
+- `useMemo` to avoid re-executing expensive functions
+- `useLayoutEffect` - blocking version of `useEffect`
+- `useImperativeHandle` to expose imperative code to parents
+
+```notes
+blocking version => syncly on all DOM renders
+imperative handle => escape hatch for forward refs
+```
+
+---
+
+# Hooks allow you to...
+
+Easily **compose reusable behaviours** within a component,
+without creating additional unnecessary React elements.
+
+---
+
+# Hooks allow you to...
+
+Never write another `class` in JS again.
+
+---
+
+# Further reading
+
+- [ReactConf 2018 keynote video](https://youtu.be/V-QO-KO90iQ)
+- [Making Sense of React Hooks](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889) by St. Abramov
+- [rehooks/awesome-react-hooks](https://github.com/rehooks/awesome-react-hooks) on GitHub

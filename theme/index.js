@@ -1,4 +1,4 @@
-import { code as theme } from "mdx-deck/themes";
+import { code as theme, book as bookTheme } from "mdx-deck/themes";
 import okaidia from "react-syntax-highlighter/styles/prism/okaidia";
 import json from "react-syntax-highlighter/languages/prism/json";
 import graphql from "react-syntax-highlighter/languages/prism/graphql";
@@ -12,12 +12,17 @@ const highlighting = {
       json,
       graphql,
       http,
-      haskell
-    }
-  }
+      haskell,
+    },
+  },
 };
 
 export default {
   ...theme,
-  ...highlighting
+  ...highlighting,
+};
+
+export const book = {
+  ...bookTheme,
+  ...highlighting,
 };
