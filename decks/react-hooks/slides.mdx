@@ -1,5 +1,9 @@
 export { book as theme } from "../../theme";
 
+<!-- TODO:
+  - Example of hooky redux
+-->
+
 # Hooks in React
 
 ---
@@ -175,6 +179,7 @@ const MyButton = ({ onClick, toggled }) => (
 ```
 
 ```notes
+...also introduced in v0.14
 Super small syntax
 NO LIFECYCLE
 ```
@@ -296,12 +301,27 @@ Naming clashes problem resurfaces in passed props
 
 ---
 
-# ~~Render Props~~
+# Render Props
+
+### a.k.a _children as a function_
+
+---
+
+# Render Props
+
+```jsx
+const MyButton = () => (
+  <ToggleBehaviour>
+    {({ toggled, toggle }) => (
+      <button onClick={toggle}>{toggled ? "On" : "Off"}</button>
+    )}
+  </ToggleBehaviour>
+);
+```
 
 ```notes
-a.k.a children as a function
-Fixes component nesting problem
-Ugly syntax in render method
+Fixes component nesting issue
+Moves nesting issue into the render method
 ```
 
 ---
@@ -391,6 +411,27 @@ Make the behaviour optional
 # `useEffect`
 
 ```jsx
+const MyOverpoweredComponent = () => {
+  const { x, y } = useWindowScrollPosition();
+  useDocumentTitle(`Scrolled to (${x}, ${y}`);
+
+  return (
+    <div>
+      {x}, {y}
+    </div>
+  );
+};
+```
+
+```notes
+Abstracting functionality by _behaviour_ not by lifecycle method
+```
+
+---
+
+# `useEffect`
+
+```jsx
 const useDocumentTitle = title =>
   useEffect(() => {
     let originalTitle = document.title;
@@ -400,13 +441,6 @@ const useDocumentTitle = title =>
       document.title = originalTitle;
     };
   }, [title]);
-```
-
-```notes
-3 things:
- - setup
- - teardown
- - dependencies
 ```
 
 ---
@@ -433,6 +467,13 @@ different way of accessing the same context
 const [state, dispatch] = useReducer(reducer, initialArg);
 ```
 
+```notes
+The pattern that makes redux powerful
+is now sort-of built-in to React.
+
+Good for building FSMs
+```
+
 ---
 
 <center>
@@ -449,7 +490,8 @@ const [state, dispatch] = useReducer(reducer, initialArg);
 
 ```notes
 My searing hot take on this
-Redux is now pretty much redundant
+Redux is now pretty much redundant (thanks Dan)
+Freedom from global application state; separate reducers + contexts for separate concerns
 ```
 
 ---
@@ -493,8 +535,17 @@ imperative handle => escape hatch for forward refs
 
 # Hooks allow you to...
 
-Easily **compose reusable behaviours** within a component,
+**Compose reusable behaviours** within a component,
 without creating additional unnecessary React elements.
+
+---
+
+# Hooks allow you to...
+
+Use 3rd party modules to add complex behaviours without:
+
+- sacrificing control of rendering
+- introducing performance overheads
 
 ---
 
