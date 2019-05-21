@@ -10,6 +10,7 @@ All slides are written in [MDX][mdx] format, to be rendered using [mdx-deck][mdx
 
 Slides are available for the following talks:
 
+- [Hooks in React](./decks/react-hooks/)
 - [GraphQL](./decks/graphql/)
 - [Typed JS](./decks/typedjs/)
 - [DevOps](./decks/devops/)
