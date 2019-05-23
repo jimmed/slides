@@ -1,10 +1,11 @@
 export { book as theme } from "../../theme";
 
-<!-- TODO:
-  - Example of hooky redux
--->
-
 # Hooks in React
+
+```notes
+Constructor Labs before Mettle
+Highly-condensed version of part of a new course
+```
 
 ---
 
@@ -12,11 +13,18 @@ export { book as theme } from "../../theme";
 
 ```notes
 for those non-tech people in the audience
+tool for building user interfaces in JS
 runs nearly all of our user interfaces
  - mettle app (react native)
  - ops-tool
  - website
  - this presentation
+can be used to render anything
+ - DOM/web applications
+ - mobile applications (android/ios)
+ - canvas/webGL (react-three-fiber)
+ - command-line tools (ink)
+ - music
 ```
 
 ---
@@ -27,19 +35,21 @@ runs nearly all of our user interfaces
     width: "100vw",
     height: "100vh",
     border: 0,
-    borderRadius: 4,
     overflow: "hidden",
   }}
   sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
 />
 
----
+```notes
+make a button that displays a cat USING CLASSES
+```
 
-import { Appear } from "mdx-deck";
+---
 
 ## Developers 💜 React
 
 ```notes
+A lot of developers love react
 Built by Facebook to address their own tech issues
 - Performance in large applications
 - Predictability / reasoning about code
@@ -59,10 +69,8 @@ import { Image } from "mdx-deck";
 ## Developers 🤬 React
 
 ```notes
-- Architecture took a long time to refine
-- Many, many improvements over time
-- Composability of components easier
-- Composability of behaviours still hard
+- Architecture took a long time to settle
+- fixed most major issues, but one long standing developer experience issue: re-using behaviours across components
 ```
 
 ---
@@ -424,7 +432,7 @@ const MyOverpoweredComponent = () => {
 ```
 
 ```notes
-Abstracting functionality by _behaviour_ not by lifecycle method
+Grouping functionality by _behaviour_ not by lifecycle method
 ```
 
 ---
@@ -522,7 +530,7 @@ Same old refs
 
 # Other built-in hooks
 
-- `useMemo` to avoid re-executing expensive functions
+- `useMemo` / `useCallback` to avoid re-executing expensive functions
 - `useLayoutEffect` - blocking version of `useEffect`
 - `useImperativeHandle` to expose imperative code to parents
 
@@ -535,14 +543,19 @@ imperative handle => escape hatch for forward refs
 
 # Hooks allow you to...
 
-**Compose reusable behaviours** within a component,
-without creating additional unnecessary React elements.
+**Organise code by behaviour**, not by lifecycle method
 
 ---
 
 # Hooks allow you to...
 
-Use 3rd party modules to add complex behaviours without:
+**Compose behaviours** and re-use them.
+
+---
+
+# Hooks allow you to...
+
+Use well-tested 3rd party modules to add complex behaviours without:
 
 - sacrificing control of rendering
 - introducing performance overheads
@@ -551,7 +564,70 @@ Use 3rd party modules to add complex behaviours without:
 
 # Hooks allow you to...
 
-Never write another `class` in JS again.
+Never write another `class` in React again.
+
+---
+
+## Apollo (via `react-apollo-hooks`)
+
+```js
+// Query
+const { data, error, loading } = useQuery(GET_CATS);
+```
+
+```js
+// Mutation
+const toggleLikedCat = useMutation(TOGGLE_LIKED_CAT, {
+  variables: { id: catId },
+});
+```
+
+---
+
+## Apollo (via `react-apollo-hooks`)
+
+```js
+// Subscription
+const { data, error, loading } = useSubscription(CAT_LIKE_COUNT_CHANGED, {
+  variables: { id: catId },
+});
+```
+
+---
+
+## Redux (via `react-redux@next`)
+
+```js
+// select data from store
+const cat = useSelector(state => state.cats[catId]);
+```
+
+```js
+// dispatch actions to store
+const dispatch = useDispatch();
+const toggleLikedCat = dispatch({ type: CAT_LIKE_ACTION, catId });
+```
+
+---
+
+## etc.
+
+```js
+const [value, setValue] = useLocalStorage();
+const { width, height, top, left } = useClientBoundingBox(elementRef);
+const { x, y } = useMousePosition(); // useScrollPosition()
+const { data, isLoading, error } = useFetch(CAT_API_URL);
+useOnClickOutside(elementRef, closeModal);
+```
+
+---
+
+<Image size="contain" src="https://pbs.twimg.com/media/D7MGiG9XYAQ1jgp.jpg" />
+
+```notes
+Taz Singh on twitter at react finland
+did i mention people really like hooks
+```
 
 ---
 
