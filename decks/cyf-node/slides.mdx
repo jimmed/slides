@@ -62,4 +62,57 @@ _"This information is on websites already! Why do I need an API?"_
 
 # Node.js
 
+Runs JavaScript code on your computer
+
 ---
+
+# Node.js
+
+Useful for making:
+
+<ul>
+  <Appear>
+    <li>API servers</li>
+    <li>Command-line tools</li>
+    <li>Chat bots (Slack etc.)</li>
+    <li>
+      <em>Snazzy presentations</em>
+    </li>
+  </Appear>
+</ul>
+
+---
+
+# Express.js
+
+API framework for node.js
+
+---
+
+# Simple server in express.js
+
+```js
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => res.send("Hello world!"));
+
+app.listen(3000, () => console.log("Listening on port 3000!"));
+```
+
+---
+
+<div
+  style={{
+    height: "100vh",
+    width: "100vw",
+    maxHeight: "100vh",
+    overflowY: "auto",
+    overflowX: "hidden",
+    padding: "1vw",
+  }}
+>
+  <h1>Cats API</h1>
+  <Fetch initialUrl="https://cyfcats.glitch.me/cats" />
+</div>

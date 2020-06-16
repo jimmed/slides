@@ -84,7 +84,7 @@ export const Fetch = ({ initialUrl }) => {
         {loading && <p>⏳ Fetching...</p>}
         {error && (
           <p>
-            ⚠️ <pre>{error.toString()}</pre>
+            <pre>⚠️ {error.toString()}</pre>
           </p>
         )}
         {result && (
