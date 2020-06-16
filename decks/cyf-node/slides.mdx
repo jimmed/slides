@@ -1,0 +1,65 @@
+import { Head, Appear, Image } from "mdx-deck";
+import { Invert, Split } from "mdx-deck/layouts";
+
+export { book as theme } from "../../theme";
+
+<Head>
+  <title>Node.js</title>
+</Head>
+
+# Node.js
+
+## Week 1: APIs and Express.js
+
+---
+
+# Group Exercise
+
+## Discuss Known APIs
+
+<ol>
+  <Appear>
+    <li>What APIs do you know about?</li>
+    <li>What might you do with them?</li>
+  </Appear>
+</ol>
+
+---
+
+import { Fetch } from "../../components/Fetch";
+
+<div
+  style={{
+    height: "100vh",
+    width: "100vw",
+    maxHeight: "100vh",
+    overflowY: "auto",
+    overflowX: "hidden",
+    padding: "1vw",
+  }}
+>
+  <h1>Sunrise/Sunset API</h1>
+  <Fetch initialUrl="https://api.sunrise-sunset.org/json?lat=51.5311&lng=0.0481" />
+</div>
+
+---
+
+# Why are APIs useful?
+
+_"This information is on websites already! Why do I need an API?"_
+
+---
+
+<h1>
+  <u>
+    <span style={{ color: "red" }}>A</span>pplication{" "}
+    <span style={{ color: "red" }}>P</span>rogramming
+  </u>{" "}
+  <span style={{ color: "red" }}>I</span>nterface
+</h1>
+
+---
+
+# Node.js
+
+---

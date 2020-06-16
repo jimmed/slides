@@ -1,5 +1,6 @@
 import { code as theme, book as bookTheme } from "mdx-deck/themes";
 import okaidia from "react-syntax-highlighter/styles/prism/okaidia";
+import ghcolors from "react-syntax-highlighter/styles/prism/ghcolors";
 import json from "react-syntax-highlighter/languages/prism/json";
 import graphql from "react-syntax-highlighter/languages/prism/graphql";
 import http from "react-syntax-highlighter/languages/prism/http";
@@ -24,5 +25,8 @@ export default {
 
 export const book = {
   ...bookTheme,
-  ...highlighting,
+  prism: {
+    ...highlighting,
+    style: ghcolors,
+  },
 };
