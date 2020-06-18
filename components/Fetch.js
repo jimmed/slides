@@ -78,8 +78,6 @@ export const Fetch = ({ title, initialUrl }) => {
           style={{
             flex: 1,
             fontSize: "2vw",
-            backgroundColor: "transparent",
-            color: "white",
             border: "1px solid #ccc",
             fontFamily: "monospace",
           }}
