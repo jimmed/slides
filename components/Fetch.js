@@ -36,7 +36,7 @@ const useLazyFetch = (url) => {
   return useMemo(() => ({ ...state, run }), [state, run]);
 };
 
-export const Fetch = ({ initialUrl }) => {
+export const Fetch = ({ title, initialUrl }) => {
   const [url, setUrl] = useState(initialUrl);
   const { result, loading, error, run } = useLazyFetch(url);
 
@@ -53,7 +53,17 @@ export const Fetch = ({ initialUrl }) => {
   ]);
 
   return (
-    <>
+    <div
+      style={{
+        height: "100vh",
+        width: "100vw",
+        maxHeight: "100vh",
+        overflowY: "auto",
+        overflowX: "hidden",
+        padding: "1vw",
+      }}
+    >
+      <h1>{title}</h1>
       <form
         onSubmit={handleSubmit}
         style={{
@@ -101,6 +111,6 @@ export const Fetch = ({ initialUrl }) => {
           </Highlight>
         )}
       </div>
-    </>
+    </div>
   );
 };

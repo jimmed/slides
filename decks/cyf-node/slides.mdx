@@ -28,19 +28,10 @@ export { book as theme } from "../../theme";
 
 import { Fetch } from "../../components/Fetch";
 
-<div
-  style={{
-    height: "100vh",
-    width: "100vw",
-    maxHeight: "100vh",
-    overflowY: "auto",
-    overflowX: "hidden",
-    padding: "1vw",
-  }}
->
-  <h1>Sunrise/Sunset API</h1>
-  <Fetch initialUrl="https://api.sunrise-sunset.org/json?lat=51.5311&lng=0.0481" />
-</div>
+<Fetch
+  title="Sunrise/Sunset API"
+  initialUrl="https://api.sunrise-sunset.org/json?lat=51.5311&lng=0.0481"
+/>
 
 ---
 
