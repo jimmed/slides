@@ -1,3 +1,9 @@
 import { themes } from "mdx-deck";
 
-export default { ...themes.book, ...themes.highlight };
+export default {
+  ...themes.future,
+  ...themes.highlight,
+  colors: {
+    text: "#efefef",
+  },
+};

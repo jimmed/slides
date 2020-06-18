@@ -59,6 +59,7 @@ export const Fetch = ({ title, initialUrl }) => {
         width: "100%",
         maxHeight: "100vh",
         overflow: "auto",
+        padding: "2vw",
       }}
     >
       <h1>{title}</h1>
@@ -74,7 +75,14 @@ export const Fetch = ({ title, initialUrl }) => {
       >
         <input
           aria-label="URL"
-          style={{ flex: 1, fontSize: "2vw" }}
+          style={{
+            flex: 1,
+            fontSize: "2vw",
+            backgroundColor: "transparent",
+            color: "white",
+            border: "1px solid #ccc",
+            fontFamily: "monospace",
+          }}
           type="url"
           value={url}
           onChange={handleUrlChange}
@@ -108,6 +116,7 @@ export const Fetch = ({ title, initialUrl }) => {
               textAlign: "left",
               maxWidth: "100vw",
               marginBottom: 0,
+              overflowX: "auto",
             }}
             lang="json"
           >

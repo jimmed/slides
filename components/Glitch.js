@@ -18,7 +18,7 @@ export const Glitch = ({ project, codePath, previewSize = 0 }) => (
         height: "100%",
         width: "100%",
         border: 0,
-        backgroundColor: "#fffceb",
+        backgroundColor: "transparent",
       }}
     />
   </div>
