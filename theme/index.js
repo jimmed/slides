@@ -5,6 +5,7 @@ import json from "react-syntax-highlighter/languages/prism/json";
 import graphql from "react-syntax-highlighter/languages/prism/graphql";
 import http from "react-syntax-highlighter/languages/prism/http";
 import haskell from "react-syntax-highlighter/languages/prism/haskell";
+import bash from "react-syntax-highlighter/languages/prism/bash";
 
 const highlighting = {
   prism: {
@@ -14,6 +15,7 @@ const highlighting = {
       graphql,
       http,
       haskell,
+      bash,
     },
   },
 };
@@ -26,7 +28,7 @@ export default {
 export const book = {
   ...bookTheme,
   prism: {
-    ...highlighting,
+    ...highlighting.prism,
     style: ghcolors,
   },
 };

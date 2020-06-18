@@ -60,26 +60,68 @@ _"This information is on websites already! Why do I need an API?"_
 
 ---
 
-# Node.js
+# Definitions
 
-Runs JavaScript code on your computer
+### Server
+
+an application that **serves** something
+
+---
+
+# Definitions
+
+### Web server
+
+serves **web pages** for humans
+
+### API server
+
+serves **data** for other applications
+
+```notes
+A server can be both API + web
+We are focussed only on API servers here
+```
+
+---
+
+# Building an API server
 
 ---
 
 # Node.js
 
-Useful for making:
+Runs JavaScript code on any\* computer
+
+<small>*within reason</small>
+
+```notes
+Explain 'within reason'
+Same JavaScript as your browser uses
+No browser-specific features
+```
+
+---
+
+# Node.js
+
+Can be used to create:
 
 <ul>
   <Appear>
-    <li>API servers</li>
+    <li>Servers</li>
     <li>Command-line tools</li>
-    <li>Chat bots (Slack etc.)</li>
+    <li>Chat bots</li>
     <li>
       <em>Snazzy presentations</em>
     </li>
   </Appear>
 </ul>
+
+```notes
+Limit is your imagination, and how well you can express it in JavaScript
+
+```
 
 ---
 
@@ -103,16 +145,99 @@ app.listen(3000, () => console.log("Listening on port 3000!"));
 
 ---
 
-<div
-  style={{
-    height: "100vh",
-    width: "100vw",
-    maxHeight: "100vh",
-    overflowY: "auto",
-    overflowX: "hidden",
-    padding: "1vw",
-  }}
->
-  <h1>Cats API</h1>
-  <Fetch initialUrl="https://cyfcats.glitch.me/cats" />
-</div>
+import { Glitch } from "../../components/Glitch";
+
+<Glitch project="serious-foremost-wallflower" codePath="server.js" />
+
+```notes
+Build node.js server that returns some JSON
+Ask the class for a theme
+```
+
+---
+
+# Group Exercise
+
+## Build an API server
+
+---
+
+# Install Postman
+
+https://getpostman.com
+
+<Image
+  src="https://www.postman.com/assets/downloads/postman-windows.jpg"
+  style={{ backgroundSize: "contain", maxHeight: "50vh", minWidth: "40vw" }}
+/>
+
+```notes
+tool for making HTTP requests
+hundreds of features, only using the basics
+```
+
+---
+
+# Get the starter project
+
+## Fork and clone the repository:
+
+https://github.com/CodeYourFuture/Node-Starter-Kit
+
+```notes
+Emphasise forking
+```
+
+---
+
+# Group Exercise
+
+## Install the dependencies
+
+```sh
+npm install
+```
+
+---
+
+# `package.json`
+
+```json
+{
+  "name": "awesome-express-server",
+  "version": "1.0.0",
+  "description": "My express.js API server",
+  "author": {
+    "name": "Jim O'Brien",
+    "email": "jim@spicy.engineering"
+  }
+}
+```
+
+```notes
+Every node package has a package.json
+```
+
+---
+
+# `package.json`
+
+```json
+{
+  "name": "awesome-express-server",
+  "version": "1.0.0",
+  "description": "My express.js API server",
+  "author": {
+    "name": "Jim O'Brien",
+    "email": "jim@spicy.engineering"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
+```
+
+```notes
+Specify the node packages we want to use
+packages are installed from npm when we run npm install
+```
