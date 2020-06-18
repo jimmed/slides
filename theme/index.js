@@ -1,3 +1,3 @@
-import { book, highlight } from "@mdx-deck/themes";
+import { themes } from "mdx-deck";
 
-export default { ...book, ...highlight };
+export default { ...themes.book, ...themes.highlight };

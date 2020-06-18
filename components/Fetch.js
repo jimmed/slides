@@ -55,12 +55,10 @@ export const Fetch = ({ title, initialUrl }) => {
   return (
     <div
       style={{
-        height: "100vh",
-        width: "100vw",
+        height: "100%",
+        width: "100%",
         maxHeight: "100vh",
-        overflowY: "auto",
-        overflowX: "hidden",
-        padding: "1vw",
+        overflow: "auto",
       }}
     >
       <h1>{title}</h1>
@@ -81,13 +79,7 @@ export const Fetch = ({ title, initialUrl }) => {
           value={url}
           onChange={handleUrlChange}
         />
-        <button
-          type="submit"
-          disabled={loading}
-          style={{
-            fontSize: "2vw",
-          }}
-        >
+        <button type="submit" disabled={loading} style={{ fontSize: "2vw" }}>
           Fetch!
         </button>
       </form>
@@ -115,7 +107,6 @@ export const Fetch = ({ title, initialUrl }) => {
             style={{
               textAlign: "left",
               maxWidth: "100vw",
-              overflowX: "auto",
               marginBottom: 0,
             }}
             lang="json"

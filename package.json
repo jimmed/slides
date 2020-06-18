@@ -6,7 +6,7 @@
     "deck": "mdx-deck"
   },
   "dependencies": {
-    "@mdx-deck/themes": "^4.1.0",
-    "mdx-deck": "^4.1.1"
+    "mdx-deck": "^4.1.1",
+    "prism-react-renderer": "^1.1.1"
   }
 }
