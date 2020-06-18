@@ -75,6 +75,7 @@ export const Fetch = ({ title, initialUrl }) => {
         }}
       >
         <input
+          aria-label="URL"
           style={{ flex: 1, fontSize: "2vw" }}
           type="url"
           value={url}
@@ -91,10 +92,22 @@ export const Fetch = ({ title, initialUrl }) => {
         </button>
       </form>
       <div>
-        {loading && <p>⏳ Fetching...</p>}
+        {loading && (
+          <p>
+            <span role="img" aria-label="loading">
+              ⏳
+            </span>{" "}
+            Fetching...
+          </p>
+        )}
         {error && (
           <p>
-            <pre>⚠️ {error.toString()}</pre>
+            <pre>
+              <span role="img" aria-label="error">
+                ⚠️
+              </span>{" "}
+              {error.toString()}
+            </pre>
           </p>
         )}
         {result && (

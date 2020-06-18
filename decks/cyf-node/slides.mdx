@@ -1,7 +1,7 @@
-import { Head, Appear, Image } from "mdx-deck";
-import { Invert, Split } from "mdx-deck/layouts";
+import { Head, Appear, Image, Notes } from "mdx-deck";
+import { default as defaultTheme } from "../../theme";
 
-export { book as theme } from "../../theme";
+export const theme = defaultTheme;
 
 <Head>
   <title>Node.js</title>
@@ -69,10 +69,9 @@ serves **web pages** for humans
 
 serves **data** for other applications
 
-```notes
-A server can be both API + web
-We are focussed only on API servers here
-```
+<Notes>
+  A server can be both API + web We are focussed only on API servers here
+</Notes>
 
 ---
 
@@ -86,11 +85,10 @@ Runs JavaScript code on any\* computer
 
 <small>*within reason</small>
 
-```notes
-Explain 'within reason'
-Same JavaScript as your browser uses
-No browser-specific features
-```
+<Notes>
+  Explain 'within reason' Same JavaScript as your browser uses No
+  browser-specific features
+</Notes>
 
 ---
 
@@ -109,10 +107,9 @@ Can be used to create:
   </Appear>
 </ul>
 
-```notes
-Limit is your imagination, and how well you can express it in JavaScript
-
-```
+<Notes>
+  Limit is your imagination, and how well you can express it in JavaScript
+</Notes>
 
 ---
 
@@ -140,10 +137,9 @@ import { Glitch } from "../../components/Glitch";
 
 <Glitch project="serious-foremost-wallflower" codePath="server.js" />
 
-```notes
-Build node.js server that returns some JSON
-Ask the class for a theme
-```
+<Notes>
+  Build node.js server that returns some JSON Ask the class for a theme
+</Notes>
 
 ---
 
@@ -162,10 +158,9 @@ https://getpostman.com
   style={{ backgroundSize: "contain", maxHeight: "50vh", minWidth: "40vw" }}
 />
 
-```notes
-tool for making HTTP requests
-hundreds of features, only using the basics
-```
+<Notes>
+  tool for making HTTP requests hundreds of features, only using the basics
+</Notes>
 
 ---
 
@@ -175,9 +170,7 @@ hundreds of features, only using the basics
 
 https://github.com/CodeYourFuture/Node-Starter-Kit
 
-```notes
-Emphasise forking
-```
+<Notes>Emphasise forking</Notes>
 
 ---
 
@@ -205,9 +198,7 @@ npm install
 }
 ```
 
-```notes
-Every node package has a package.json
-```
+<Notes>Every node package has a package.json</Notes>
 
 ---
 
@@ -228,7 +219,7 @@ Every node package has a package.json
 }
 ```
 
-```notes
-Specify the node packages we want to use
-packages are installed from npm when we run npm install
-```
+<Notes>
+  Specify the node packages we want to use packages are installed from npm when
+  we run npm install
+</Notes>
