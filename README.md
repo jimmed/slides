@@ -10,7 +10,7 @@ All slides are written in [MDX][mdx] format, to be rendered using [mdx-deck][mdx
 
 Slides are available for the following talks:
 
-- [Node.js](./decks/node-1/)
+- [Node.js - CYF Week 1](./decks/node-1/)
 
 Note that a lot of these slides make little sense without me talking in front of them, but the source code is left here as a reference for my students, or anybody else who is curious.
 
