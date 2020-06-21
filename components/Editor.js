@@ -4,13 +4,18 @@ import { CodeSandbox } from "./CodeSandbox";
 
 const Editors = { Glitch, CodeSandbox };
 
+const getLocalStorage = () =>
+  typeof localStorage === "undefined" ? {} : localStorage;
+
 export const useLocalStorage = (key, defaultValue) => {
-  const [state, setState] = useState(() => localStorage[key] ?? defaultValue);
+  const [state, setState] = useState(
+    () => getLocalStorage()[key] ?? defaultValue
+  );
   useEffect(() => {
     if (state != null && key != null) {
-      localStorage[key] = state;
+      getLocalStorage()[key] = state;
     } else {
-      delete localStorage[key];
+      delete getLocalStorage()[key];
     }
   }, [state, key]);
   return [state, setState];
