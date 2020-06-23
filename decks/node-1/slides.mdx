@@ -1,0 +1,720 @@
+import { Head, Appear, Image, Notes } from "mdx-deck";
+import { default as defaultTheme } from "../../theme";
+
+export const theme = defaultTheme;
+
+<Head>
+  <title>Node.js</title>
+</Head>
+
+# Node.js
+
+## Week 1: APIs and Express.js
+
+<Notes>Refresh on previous of APIs in React using fetch</Notes>
+
+---
+
+# Group Exercise
+
+## Discuss Known APIs
+
+<ol>
+  <Appear>
+    <li>What APIs do you know about?</li>
+    <li>What might you do with them?</li>
+  </Appear>
+</ol>
+
+---
+
+import { Fetch } from "../../components/Fetch";
+
+<Fetch
+  title="Sunrise/Sunset API"
+  initialUrl="https://api.sunrise-sunset.org/json?lat=51.5311&lng=0.0481"
+/>
+
+<Notes>
+  Explain why might be useful
+  <br />
+  https://api.tvmaze.com/shows/156
+  <br />
+  https://api.tvmaze.com/shows/156/episodes
+</Notes>
+
+---
+
+# Why are APIs useful?
+
+---
+
+<h1>
+  <span style={{ color: "red" }}>A</span>pplication
+  <br />
+  <span style={{ color: "red" }}>P</span>rogramming
+  <br />
+  <span style={{ color: "red" }}>I</span>nterface
+</h1>
+
+<Notes>
+  Used to program applications
+  <br />
+  Allow applications to consume information
+</Notes>
+
+---
+
+## "Server" _or_ "Backend"
+
+an application that **serves** something
+
+---
+
+## "Web server"
+
+serves **web pages** for humans
+
+## "API server"
+
+serves **data** for other applications
+
+<Notes>
+  A server can be both API + web
+  <br />
+  We are mostly focussing on API servers here
+</Notes>
+
+---
+
+# Building an API server
+
+---
+
+# Node.js
+
+<Appear>
+  <div>Runs JavaScript code on any* computer</div>
+  <div>
+    <small>*within reason</small>
+  </div>
+</Appear>
+
+<Notes>
+  Same JavaScript as your browser uses
+  <br />
+  Explain 'within reason'
+  <br />
+  No browser-specific features
+</Notes>
+
+---
+
+# Node.js
+
+Can be used to create:
+
+<ul>
+  <Appear>
+    <li>Servers / Backends</li>
+    <li>Command-line tools</li>
+    <li>Chat bots</li>
+    <li>
+      <em>Snazzy presentations</em>
+    </li>
+  </Appear>
+</ul>
+
+<Notes>Mention some of your personal favourite node.js projects</Notes>
+
+---
+
+# Express.js
+
+## API library for node.js
+
+<Notes>
+  Possible to make APIs with just node.js, but it gets complicated quickly
+  <br />
+  Code ends up much cleaner as API grows
+  <br />
+  Extremely popular (13,067,021 weekly downloads as of yesterday evening)
+  <br />
+  Good documentation
+</Notes>
+
+---
+
+# Simple server in express.js
+
+```js
+const express = require("express");
+
+const app = express();
+
+app.get("/", (req, res) => res.send("Hello world!"));
+
+app.listen(3000, () => console.log("Listening on port 3000!"));
+```
+
+---
+
+import { Editor } from "../../components/Editor";
+
+<Editor
+  projectNames={{
+    Glitch: "cyf-express-starter",
+    CodeSandbox: "cyf-express-basic-m32gy",
+  }}
+  codePath="server.js"
+/>
+
+<Notes>
+  Build node.js server that returns some JSON Ask the class for a theme
+</Notes>
+
+---
+
+import { useLocalStorage } from "../../components/Editor";
+
+# Group Exercise
+
+## Build an API server
+
+<ol>
+  <Appear>
+    <li>
+      {useLocalStorage("editor", "Glitch")[0] === "Glitch" ? (
+        <React.Fragment>
+          Remix on Glitch
+          <br />
+          <a href="https://glitch.com/~cyf-express-starter">
+            https://glitch.com/~cyf-express-starter
+          </a>
+        </React.Fragment>
+      ) : (
+        <React.Fragment>
+          Fork on CodeSandbox
+          <br />
+          <a href="https://codesandbox.io/s/cyf-express-basic-m32gy">
+            https://codesandbox.io/s/cyf-express-basic-m32gy
+          </a>
+        </React.Fragment>
+      )}
+    </li>
+    <li>Create your first API server!</li>
+  </Appear>
+</ol>
+
+---
+
+# Install Postman
+
+https://getpostman.com
+
+<Image
+  src="https://www.postman.com/assets/downloads/postman-windows.jpg"
+  style={{ backgroundSize: "contain", maxHeight: "50vh", minWidth: "40vw" }}
+/>
+
+<Notes>
+  tool for making HTTP requests
+  <br />
+  hundreds of features, only using the basics
+</Notes>
+
+---
+
+# Group Exercise
+
+## 1. Fork and clone the repository:
+
+https://github.com/CodeYourFuture/Node-Starter-Kit
+
+## 2. Install the dependencies
+
+```sh
+npm install
+```
+
+<Notes>
+  Once cloned, open terminal in the cloned repo; run command
+  <br />
+  Demonstrate doing this in VSCode
+  <br />
+  Explain what npm is
+</Notes>
+
+---
+
+# `package.json`
+
+```json
+{
+  "name": "awesome-express-server",
+  "version": "1.0.0",
+  "description": "My express.js API server"
+}
+```
+
+<Notes>
+  Every node package has a package.json; info about what the package is
+</Notes>
+
+---
+
+# `package.json`
+
+```json
+{
+  // ...
+  "author": {
+    "name": "Jim O'Brien",
+    "email": "jim@spicy.engineering",
+    "url": "https://spicy.engineering"
+  }
+}
+```
+
+<Notes>Who made it and how to get in touch</Notes>
+
+---
+
+# `package.json`
+
+```json
+{
+  // ...
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CodeYourFuture/awesome-express-server.git"
+  }
+}
+```
+
+<Notes>Where the code is -- importance of open source</Notes>
+
+---
+
+# `package.json`
+
+```json
+{
+  // ...
+  "repository": "github:CodeYourFuture/awesome-express-server"
+}
+```
+
+<Notes>Shorthand, much cleaner</Notes>
+
+---
+
+# `package.json`
+
+```json
+{
+  // ...
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
+```
+
+<Notes>
+  Specify the node packages we need to use this app
+  <br />
+  packages are installed from npm when we run npm install
+</Notes>
+
+---
+
+# Live coding demo!
+
+<Notes>
+  Write out same example code again
+  <ol>
+    <li>require express</li>
+    <li>init app</li>
+    <li>listen on port</li>
+    <li>Next slide</li>
+  </ol>
+</Notes>
+
+---
+
+# Ports
+
+<code>
+  <span style={{ fontSize: "3vw" }}>
+    <span style={{ color: "blue" }}>https</span>
+    ://
+    <span style={{ color: "green" }}>github.com</span>/
+  </span>
+</code>
+
+---
+
+# Ports
+
+<code>
+  <span style={{ fontSize: "3vw" }}>
+    <span style={{ color: "blue" }}>http</span>
+    ://
+    <span style={{ color: "green" }}>localhost</span>:
+    <span style={{ color: "red" }}>3000</span>/
+  </span>
+</code>
+
+---
+
+# Live coding demo!
+
+<Notes>
+  Highlight <pre>.listen(port)</pre> again
+  <br />
+  Start server with <pre>node server.js</pre>
+  <br />
+  Kill server (ctrl + c even on mac)
+  <br />
+  Show scripts.start in package.json
+  <br />
+  Start server with <pre>npm start</pre>
+</Notes>
+
+---
+
+# Group Exercise
+
+## Start your own server!
+
+<ol>
+  <Appear>
+    <li>
+      Create a <span style={{ fontFamily: "monospace" }}>server.js</span> file
+    </li>
+    <li>
+      <span style={{ fontFamily: "monospace" }}>require</span> the{" "}
+      <span style={{ fontFamily: "monospace" }}>express</span> library
+    </li>
+    <li>Initialise the server</li>
+    <li>
+      Start <em>listening</em> for potential requests
+    </li>
+  </Appear>
+</ol>
+
+---
+
+# Live coding demo!
+
+<Notes>
+  Explain handler function
+  <br />
+  Add handler function
+  <br />
+  Display in Postman
+</Notes>
+
+---
+
+# Checkpoint
+
+## Do you understand these terms?
+
+<div style={{ display: "flex", flexDirection: "column" }}>
+  <Appear>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      Client
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      Server
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      Front-end
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      Back-end
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      Full stack developer
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      Request
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      Response
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      HTTP
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      HTTP Response Codes
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        style={{ transform: "scale(2)", verticalAlign: "middle" }}
+      />{" "}
+      HTTP Request Methods (or Verbs)
+    </label>
+  </Appear>
+</div>
+
+---
+
+# Live coding demo!
+
+<Notes>
+  Introduce concept of routing
+  <br />
+  Make requests to unhandled path with Postman
+</Notes>
+
+---
+
+# URLs
+
+<code>
+  <span style={{ fontSize: "2vw" }}>
+    https://api.sunrise-sunset.org/json?lat=51.5311&lng=0.0481
+  </span>
+</code>
+
+---
+
+# URLs
+
+<code>
+  <span style={{ fontSize: "2vw" }}>
+    <span style={{ color: "red" }}>https</span>
+    <span style={{ color: "gray" }}>
+      ://api.sunrise-sunset.org/json?lat=51.5311&lng=0.0481
+    </span>
+  </span>
+</code>
+
+---
+
+# URLs
+
+<code>
+  <span style={{ fontSize: "2vw" }}>
+    <span style={{ color: "gray" }}>https://</span>
+    <span style={{ color: "red" }}>api.sunrise-sunset.org</span>
+    <span style={{ color: "gray" }}>/json?lat=51.5311&lng=0.0481</span>
+  </span>
+</code>
+
+---
+
+# URLs
+
+<code>
+  <span style={{ fontSize: "2vw" }}>
+    <span style={{ color: "gray" }}>https://api.sunrise-sunset.org</span>
+    <span style={{ color: "red" }}>/json</span>
+    <span style={{ color: "gray" }}>?lat=51.5311&lng=0.0481</span>
+  </span>
+</code>
+
+<Notes>
+  In the context of a URL, called "path", in context of API called "endpoint"
+</Notes>
+
+---
+
+# URLs
+
+<code>
+  <span style={{ fontSize: "2vw" }}>
+    <span style={{ color: "gray" }}>https://api.sunrise-sunset.org/json</span>
+    <span style={{ color: "red" }}>?lat=51.5311&lng=0.0481</span>
+  </span>
+</code>
+
+---
+
+# Live coding demo!
+
+<Notes>Create a new endpoint and request handler</Notes>
+
+---
+
+# Group Exercise
+
+## Create some endpoints
+
+<ol>
+  <Appear>
+    <li>
+      Create an endpoint called{" "}
+      <span style={{ fontFamily: "monospace" }}>/node</span>
+    </li>
+    <li>
+      Create an endpoint called{" "}
+      <span style={{ fontFamily: "monospace" }}>/codeyourfuture</span>
+    </li>
+    <li>Have the endpoints return different messages</li>
+  </Appear>
+</ol>
+
+---
+
+# Query Parameters
+
+<code>
+  <span style={{ fontSize: "2vw" }}>
+    <span style={{ color: "gray" }}>https://api.sunrise-sunset.org/json</span>
+    <span style={{ color: "red" }}>?lat=51.5311&lng=0.0481</span>
+  </span>
+</code>
+
+<Notes>Query string contains query parameters</Notes>
+
+---
+
+# Query Parameters
+
+<code>
+  <span style={{ fontSize: "2vw" }}>?lat=51.5311&lng=0.0481</span>
+</code>
+
+```js
+{
+  lat: "51.5311",
+  lng: "0.0481"
+}
+```
+
+<Notes>
+  Separated from rest of URL with ?<br />
+  Parameters separated with &<br />
+  Key/value separated with =
+</Notes>
+
+---
+
+# Query Parameters
+
+<code>
+  <span style={{ fontSize: "2vw" }}>
+    ?lat=51.5311&lng=0.0481&date=2017-01-01
+  </span>
+</code>
+
+```js
+{
+  lat: "51.5311",
+  lng: "0.0481",
+  date: "2017-01-01"
+}
+```
+
+---
+
+# Using query parameters
+
+<code>
+  <span style={{ fontSize: "2vw" }}>/json?lat=51.5311&lng=0.0481</span>
+</code>
+
+```js
+app.get("/json", (req, res) => {
+  const lat = req.query.lat;
+  const lng = req.query.lng;
+  res.send(`Latitude is ${lat}, longitude is ${lng}`);
+});
+```
+
+---
+
+# Using query parameters
+
+<code>
+  <span style={{ fontSize: "2vw" }}>/json?lat=51.5311&lng=0.0481</span>
+</code>
+
+```js
+app.get("/json", (req, res) => {
+  const { lng, lat } = req.query;
+  res.send(`Latitude is ${lat}, longitude is ${lng}`);
+});
+```
+
+---
+
+# Group Exercise
+
+## Handle query parameters
+
+<ol>
+  <Appear>
+    <li>
+      Add a <span style={{ fontFamily: "monospace" }}>/chocolate</span> endpoint
+    </li>
+    <li>
+      Have it handle a query parameter called{" "}
+      <span style={{ fontFamily: "monospace" }}>amount</span>
+    </li>
+    <li>
+      Have it send a response of "Yum! <em>N</em> chocolates!" where <em>N</em>{" "}
+      is <span style={{ fontFamily: "monospace" }}>amount</span>
+    </li>
+    <li>Test it in Postman</li>
+  </Appear>
+</ol>
+
+---
+
+# Learning Goals
+
+<ol>
+  <Appear>
+    <li>Define what an API is used for</li>
+    <li>Use Glitch to deploy and edit express servers</li>
+    <li>Use npm to start a node server</li>
+    <li>Explain what express is and what it is used for</li>
+    <li>
+      Use express to create an API that will accept a GET request that returns
+      JSON
+    </li>
+    <li>Implement routing to return different resources depending on URL</li>
+    <li>Implement query params to return different content (?query=ses)</li>
+  </Appear>
+</ol>
