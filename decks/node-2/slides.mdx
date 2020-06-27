@@ -11,20 +11,258 @@ export const theme = defaultTheme;
 
 ## Week 2: CRUD with Express
 
-<Notes>
-  <p>Recap on last week's learning goals:</p>
-  <ol>
-    <li>Define what an API is used for</li>
-    <li>Use Glitch to deploy and edit express servers</li>
-    <li>Use npm to start a node server</li>
-    <li>Explain what express is and what it is used for</li>
+---
+
+# Recap
+
+<ol>
+  <Appear>
     <li>
-      Use express to create an API that will accept a GET request that returns
-      JSON
+      Define what an <strong>API</strong> is used for
     </li>
-    <li>Implement routing to return different resources depending on URL</li>
-    <li>Implement query params to return different content (?query=ses)</li>
-  </ol>
+    <li>
+      Use <strong>Glitch</strong> to deploy and edit express servers
+    </li>
+    <li>
+      Use <strong>npm</strong> to start a node server
+    </li>
+    <li>
+      Explain what <strong>express</strong> is and what it is used for
+    </li>
+    <li>
+      Use express to create an API that will{" "}
+      <strong>accept a GET request</strong> that returns JSON
+    </li>
+    <li>
+      Implement <strong>routing</strong> to return different resources depending
+      on URL
+    </li>
+    <li>
+      Implement <strong>query params</strong> to return different content (
+      <span style={{ fontFamily: "monospace" }}>?query=ses</span>)
+    </li>
+  </Appear>
+</ol>
+
+<Notes>
+  Give opportunity for students to ask any questions before continuing!
+  <br />
+  Previous lesson did not give enough time in group exercises
+</Notes>
+
+---
+
+# Resource
+
+<Appear>
+  <h2>Entity</h2>
+  <h2>Object</h2>
+  <h2>Thing</h2>
+</Appear>
+
+<Notes>
+  Many terms for the same concept
+  <br />
+  "A resource is an item of data our API deals with"
+</Notes>
+
+---
+
+# CRUD
+
+---
+
+<h1>
+  <span style={{ color: "red" }}>C</span>reate
+  <br />
+  <span style={{ color: "red" }}>R</span>etrieve
+  <br />
+  <span style={{ color: "red" }}>U</span>pdate
+  <br />
+  <span style={{ color: "red" }}>D</span>elete
+</h1>
+
+<Notes>
+  Most applications have a workflow like this
+  <br />
+  Basic building blocks of an API
+</Notes>
+
+---
+
+# CRUD in HTTP Verbs
+
+<h1>
+  <span style={{ color: "red" }}>C</span>reate{" "}
+  <span style={{ float: "right" }}>POST</span>
+  <br />
+  <span style={{ color: "red" }}>R</span>etrieve{" "}
+  <span style={{ float: "right" }}>GET</span>
+  <br />
+  <span style={{ color: "red" }}>U</span>pdate{" "}
+  <span style={{ float: "right" }}>PUT</span>
+  <br />
+  <span style={{ color: "red" }}>D</span>elete{" "}
+  <span style={{ float: "right", marginLeft: "5rem" }}>DELETE</span>
+</h1>
+
+<Notes>
+  Many other HTTP verbs that don't map to CRUD; not very commonly used
+</Notes>
+
+---
+
+# RESTful API
+
+<ul>
+  <Appear>
+    <li>
+      The HTTP verb specifies the <strong>what we're doing</strong>
+    </li>
+    <li>
+      The route specifies <strong>which resource</strong> we're doing it to
+    </li>
+    <li>
+      The HTTP status code specifies <strong>the outcome</strong>
+    </li>
+  </Appear>
+</ul>
+
+<Notes>
+  Likely to come across this term in the wild
+  <br />
+  Representational state transfer (useless definition)
+  <br />
+  Keeps API intuitive and consistent
+</Notes>
+
+---
+
+# Routes in REST
+
+<div style={{ textAlign: "left", fontFamily: "monospace", fontSize: "1.8vw" }}>
+  <Appear>
+    <h1>/users</h1>
+    <h1>
+      /users/<span style={{ color: "blue" }}>:userId</span>
+    </h1>
+    <h1>
+      /users/<span style={{ color: "blue" }}>:userId</span>/photos
+    </h1>
+    <h1>
+      /users/<span style={{ color: "blue" }}>:userId</span>/photos/
+      <span style={{ color: "green" }}>:photoId</span>
+    </h1>
+    <h1>
+      /users/<span style={{ color: "blue" }}>:userId</span>/photos/
+      <span style={{ color: "green" }}>:photoId</span>/comments
+    </h1>
+  </Appear>
+</div>
+
+---
+
+import { Timer } from "../../components/Timer";
+
+# 10 minute screen break! ☕️🍵💃
+
+<Timer duration={10 * 60} />
+
+---
+
+# Workshop
+
+## Beyoncé Albums API
+
+<ol>
+  <Appear>
+    <li>Create a new album</li>
+    <li>Retrieve a list of albums</li>
+    <li>Retrieve a single album</li>
+    <li>Update an existing album</li>
+    <li>Delete an album</li>
+  </Appear>
+</ol>
+
+---
+
+# Workshop
+
+## Albums API
+
+<ol>
+  <Appear>
+    <li>
+      Create a new album <span style={{ float: "right" }}>POST /albums</span>
+    </li>
+    <li>
+      Retrieve a list of albums{" "}
+      <span style={{ float: "right" }}>GET /albums</span>
+    </li>
+    <li>
+      Retrieve a single album{" "}
+      <span style={{ float: "right" }}>GET /albums/:id</span>
+    </li>
+    <li>
+      Update an existing album{" "}
+      <span style={{ float: "right", marginLeft: "5rem" }}>
+        PUT /albums/:id
+      </span>
+    </li>
+    <li>
+      Delete an album <span style={{ float: "right" }}>DELETE /albums/:id</span>
+    </li>
+  </Appear>
+</ol>
+
+---
+
+import { Highlight } from "../../components/Highlight";
+
+<Highlight lang="json">
+  {`[
+  {
+    "albumId": "10",
+    "artistName": "Beyoncé",
+    "collectionName": "Lemonade",
+    "artworkUrl100": "http://is1.mzstatic.com/image/thumb/Music20/v4/23/c1/9e/23c19e53-783f-ae47-7212-03cc9998bd84/source/100x100bb.jpg",
+    "releaseDate": "2016-04-25T07:00:00Z",
+    "primaryGenreName": "Pop",
+    "url": "https://www.youtube.com/embed/PeonBmeFR8o"
+  },
+  {
+    "albumId": "11",
+    "artistName": "Beyoncé",
+    "collectionName": "Dangerously In Love",
+    "artworkUrl100": "http://is1.mzstatic.com/image/thumb/Music/v4/18/93/6d/18936d85-8f6b-7597-87ef-62c4c5211298/source/100x100bb.jpg",
+    "releaseDate": "2003-06-24T07:00:00Z",
+    "primaryGenreName": "Pop",
+    "url": "https://www.youtube.com/embed/ViwtNLUqkMY"
+  }
+]`}
+</Highlight>
+
+---
+
+# Step 1: `GET /albums`
+
+## Returns an array of all albums
+
+<Notes>
+
+</Notes>
+
+---
+
+# Live coding demo
+
+## Retrieve a resource by its ID
+
+[Remix `cyf-get-all-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-get-all-starter)
+
+<Notes>
+  Share link on Slack
+  <br />
 </Notes>
 
 ---
