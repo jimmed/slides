@@ -176,10 +176,9 @@ import { Timer } from "../../components/Timer";
 
 <ol>
   <Appear>
-    <li>Create a new album</li>
     <li>Retrieve a list of albums</li>
     <li>Retrieve a single album</li>
-    <li>Update an existing album</li>
+    <li>Create a new album</li>
     <li>Delete an album</li>
   </Appear>
 </ol>
@@ -193,24 +192,24 @@ import { Timer } from "../../components/Timer";
 <ol>
   <Appear>
     <li>
-      Create a new album <span style={{ float: "right" }}>POST /albums</span>
-    </li>
-    <li>
       Retrieve a list of albums{" "}
-      <span style={{ float: "right" }}>GET /albums</span>
+      <span style={{ float: "right", marginLeft: "5rem" }}>GET /albums</span>
     </li>
     <li>
       Retrieve a single album{" "}
-      <span style={{ float: "right" }}>GET /albums/:id</span>
-    </li>
-    <li>
-      Update an existing album{" "}
       <span style={{ float: "right", marginLeft: "5rem" }}>
-        PUT /albums/:id
+        GET /albums/:id
       </span>
     </li>
     <li>
-      Delete an album <span style={{ float: "right" }}>DELETE /albums/:id</span>
+      Create a new album{" "}
+      <span style={{ float: "right", marginLeft: "5rem" }}>POST /albums</span>
+    </li>
+    <li>
+      Delete an album{" "}
+      <span style={{ float: "right", marginLeft: "5rem" }}>
+        DELETE /albums/:id
+      </span>
     </li>
   </Appear>
 </ol>
@@ -248,21 +247,164 @@ import { Highlight } from "../../components/Highlight";
 
 ## Returns an array of all albums
 
-<Notes>
+[Remix `cyf-get-all-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-get-all-starter)
 
+<Notes>
+  Implement the TODOs live
+  <br />
+  Test in Postman
 </Notes>
 
 ---
 
-# Live coding demo
+# Group Exercise 1
 
-## Retrieve a resource by its ID
+### `GET /albums` returns a list of all albums
 
 [Remix `cyf-get-all-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-get-all-starter)
 
 <Notes>
-  Share link on Slack
+  Share link in Slack
   <br />
+  Allow 15 minutes, get TAs to report progress to adjust timings
 </Notes>
 
 ---
+
+# Nodemon
+
+Automatically restarts your server when files change
+
+---
+
+# Installing Nodemon
+
+`npm install --save-dev nodemon`
+
+<Notes>Quick note on `--save-dev`</Notes>
+
+---
+
+# Adding `dev` script
+
+```json
+{
+  // ...
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  }
+}
+```
+
+---
+
+# Starting server with nodemon
+
+~~`npm start`~~
+
+`npm run dev`
+
+<Notes>
+  Production vs development
+  <br />
+  Not necessary on Glitch
+</Notes>
+
+---
+
+# Step 2: `GET /albums/:albumId`
+
+## Returns a single album by its ID
+
+[Remix `cyf-get-by-id-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-get-by-id-starter)
+
+<Notes>
+  req.params
+  <br />
+  leave implementation of 'find' and 'send' to students
+</Notes>
+
+---
+
+# Group Exercise 2
+
+### `GET /albums/:albumId` returns a single album by its ID
+
+[Remix `cyf-get-by-id-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-get-by-id-starter)
+
+<Notes>
+  Share link in Slack
+  <br />
+  Allow 20 minutes, get TAs to report progress to adjust timings
+</Notes>
+
+---
+
+# Step 3: `POST /albums`
+
+## Creates a new album
+
+[Remix `cyf-add-new-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-add-new-starter)
+
+<Notes>
+  Express can't understand JSON bodies by itself
+  <br />
+  Middleware
+  <br />
+  `app.use` - 'use for all requests'
+</Notes>
+
+---
+
+# Group Exercise 3
+
+### `POST /albums` adds a new album
+
+[Remix `cyf-add-new-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-add-new-starter)
+
+<Notes>
+  Share link in Slack
+  <br />
+  Allow 20 minutes, get TAs to report progress to adjust timings
+</Notes>
+
+---
+
+# Step 4: `DELETE /albums/:albumId`
+
+## Deletes a single album by its ID
+
+[Remix `cyf-get-by-id-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-get-by-id-starter)
+
+<Notes>
+  req.params
+  <br />
+  leave implementation of 'find' and 'send' to students
+</Notes>
+
+---
+
+# Group Exercise 4
+
+### `DELETE /albums/:albumId` deletes a single album by its ID
+
+[Remix `cyf-delete-by-id-starter` on Glitch](https://glitch.com/edit/#!/remix/cyf-delete-by-id-starter)
+
+<Notes>
+  Share link in Slack
+  <br />
+  Allow 20 minutes, get TAs to report progress to adjust timings
+</Notes>
+
+---
+
+# Questions?
+
+## Queries?
+
+### Qualms?
+
+#### Quarrels?
+
+##### Quandries?
