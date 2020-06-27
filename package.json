@@ -3,7 +3,8 @@
   "version": "0.1.0-alpha.0",
   "private": true,
   "scripts": {
-    "deck": "mdx-deck"
+    "deck": "mdx-deck",
+    "build": "mdx-deck build"
   },
   "dependencies": {
     "mdx-deck": "^4.1.1",
