@@ -1,0 +1,69 @@
+import { Head, Appear, Image, Notes } from "mdx-deck";
+import { default as defaultTheme } from "../../theme";
+import { Diagram } from "../../components/Diagram";
+
+export const theme = defaultTheme;
+
+<Head>
+  <title>Node.js</title>
+</Head>
+
+# Node.js
+
+## Week 3: CRUD with Express
+
+---
+
+# Recap
+
+<ol>
+  <Appear>
+    <li>
+      Define what each part of <strong>CRUD</strong> is and what it does
+    </li>
+    <li>
+      Process a <span style={{ fontFamily: "monospace" }}>GET</span> request to
+      retrieve data from memory
+    </li>
+    <li>
+      Process a <span style={{ fontFamily: "monospace" }}>POST</span> request to
+      store data in memory
+    </li>
+    <li>
+      Process a <span style={{ fontFamily: "monospace" }}>DELETE</span> request
+      to remove data from memory
+    </li>
+    <li>
+      Install a third party library using{" "}
+      <span style={{ fontFamily: "monospace" }}>npm</span>
+    </li>
+  </Appear>
+</ol>
+
+---
+
+# CRUD Recap
+
+---
+
+import { start, getAll } from "./diagrams/crud";
+
+<Diagram images={[...start, ...getAll]} alt="Getting /albums from an API" />
+
+---
+
+import { getById } from "./diagrams/crud";
+
+<Diagram images={[...start, ...getById]} alt="Getting /albums/2 from an API" />
+
+---
+
+import { post } from "./diagrams/crud";
+
+<Diagram images={[...start, ...post]} alt="Creating /albums on an API" />
+
+---
+
+import { delete as remove } from "./diagrams/crud";
+
+<Diagram images={[...start, ...remove]} alt="Deleting /albums on an API" />
