@@ -4,6 +4,7 @@ const manifest = [
   { name: "getById", count: 3 },
   { name: "post", count: 4 },
   { name: "delete", count: 4 },
+  { name: "update", count: 4 },
 ];
 
 module.exports = Object.fromEntries(

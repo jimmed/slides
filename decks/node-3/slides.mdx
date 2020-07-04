@@ -42,7 +42,19 @@ export const theme = defaultTheme;
 
 ---
 
-# CRUD Recap
+<h1>
+  <span style={{ color: "red" }}>C</span>reate{" "}
+  <span style={{ float: "right" }}>POST</span>
+  <br />
+  <span style={{ color: "red" }}>R</span>etrieve{" "}
+  <span style={{ float: "right" }}>GET</span>
+  <br />
+  <span style={{ color: "red" }}>U</span>pdate{" "}
+  <span style={{ float: "right" }}>PUT</span>
+  <br />
+  <span style={{ color: "red" }}>D</span>elete{" "}
+  <span style={{ float: "right", marginLeft: "5rem" }}>DELETE</span>
+</h1>
 
 ---
 
@@ -67,3 +79,36 @@ import { post } from "./diagrams/crud";
 import { delete as remove } from "./diagrams/crud";
 
 <Diagram images={[...start, ...remove]} alt="Deleting /albums on an API" />
+
+---
+
+import { update } from "./diagrams/crud";
+
+<Diagram images={[...start, ...update]} alt="Updating /albums/2 on an API" />
+
+<Notes>
+  Not covered PUT/update before, ask students what interaction is missing before
+  revealing
+</Notes>
+
+---
+
+# Live Coding Demo
+
+## Using `PUT` to update data
+
+### [Remix `~cyf-quotes-id-start` on Glitch](https://glitch.com/edit/#!/remix/cyf-quotes-id-start)
+
+<Notes>
+  Implement PUT endpoint
+  <br />
+  console.log request body
+  <br />
+  get class to send requests
+</Notes>
+
+---
+
+# Heroku
+
+---
