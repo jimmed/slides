@@ -3,9 +3,12 @@
   "version": "0.1.0-alpha.0",
   "private": true,
   "scripts": {
-    "deck": "mdx-deck"
+    "deck": "mdx-deck",
+    "build": "mdx-deck build"
   },
   "dependencies": {
-    "mdx-deck": "^1.8.1"
+    "date-fns": "^2.14.0",
+    "mdx-deck": "^4.1.1",
+    "prism-react-renderer": "^1.1.1"
   }
 }

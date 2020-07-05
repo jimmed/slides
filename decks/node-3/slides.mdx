@@ -1,0 +1,158 @@
+import { Head, Appear, Image, Notes } from "mdx-deck";
+import { default as defaultTheme } from "../../theme";
+import { Diagram } from "../../components/Diagram";
+
+export const theme = defaultTheme;
+
+<Head>
+  <title>Node.js</title>
+</Head>
+
+# Node.js
+
+## Week 3: CRUD with Express
+
+---
+
+# Recap
+
+<ol>
+  <Appear>
+    <li>
+      Define what each part of <strong>CRUD</strong> is and what it does
+    </li>
+    <li>
+      Process a <span style={{ fontFamily: "monospace" }}>GET</span> request to
+      retrieve data from memory
+    </li>
+    <li>
+      Process a <span style={{ fontFamily: "monospace" }}>POST</span> request to
+      store data in memory
+    </li>
+    <li>
+      Process a <span style={{ fontFamily: "monospace" }}>DELETE</span> request
+      to remove data from memory
+    </li>
+    <li>
+      Install a third party library using{" "}
+      <span style={{ fontFamily: "monospace" }}>npm</span>
+    </li>
+  </Appear>
+</ol>
+
+---
+
+<h1>
+  <span style={{ color: "red" }}>C</span>reate{" "}
+  <span style={{ float: "right" }}>POST</span>
+  <br />
+  <span style={{ color: "red" }}>R</span>etrieve{" "}
+  <span style={{ float: "right" }}>GET</span>
+  <br />
+  <span style={{ color: "red" }}>U</span>pdate{" "}
+  <span style={{ float: "right" }}>PUT</span>
+  <br />
+  <span style={{ color: "red" }}>D</span>elete{" "}
+  <span style={{ float: "right", marginLeft: "5rem" }}>DELETE</span>
+</h1>
+
+---
+
+import { start, getAll } from "./diagrams/crud";
+
+<Diagram images={[...start, ...getAll]} alt="Getting /albums from an API" />
+
+---
+
+import { getById } from "./diagrams/crud";
+
+<Diagram images={[...start, ...getById]} alt="Getting /albums/2 from an API" />
+
+---
+
+import { post } from "./diagrams/crud";
+
+<Diagram images={[...start, ...post]} alt="Creating /albums on an API" />
+
+---
+
+import { delete as remove } from "./diagrams/crud";
+
+<Diagram images={[...start, ...remove]} alt="Deleting /albums on an API" />
+
+---
+
+import { update } from "./diagrams/crud";
+
+<Diagram images={[...start, ...update]} alt="Updating /albums/2 on an API" />
+
+<Notes>
+  Not covered PUT/update before, ask students what interaction is missing before
+  revealing
+</Notes>
+
+---
+
+# Live Coding Demo
+
+## Using `PUT` to update data
+
+### [Remix `~cyf-quotes-id-start` on Glitch](https://glitch.com/edit/#!/remix/cyf-quotes-id-start)
+
+<Notes>
+  Implement PUT endpoint
+  <br />
+  console.log request body
+  <br />
+  get class to send requests
+</Notes>
+
+---
+
+# Heroku
+
+---
+
+# Heroku
+
+## Runs your node.js server in the cloud
+
+<Notes>
+  Differences from Glitch
+  <br />
+  <ul>
+    <li>No editor/source view</li>
+    <li>Free tier</li>
+    <li>Addons</li>
+  </ul>
+</Notes>
+
+---
+
+import { git } from "./diagrams/heroku";
+
+<Diagram images={git} alt="Normal GitHub vs Heroku git push" />
+
+---
+
+# Live Demo
+
+## Deploying an API to Heroku
+
+### [Heroku documentation](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+
+<Notes>
+  <ol>
+    <li>Register</li>
+    <li>Install CLI</li>
+    <li>Login</li>
+    <li>Deploy an app (make new if time)</li>
+    <li>View logs</li>
+    <li>Define a Procfile</li>
+    <li>Run the app locally</li>
+  </ol>
+</Notes>
+
+---
+
+# Questions?
